@@ -35,7 +35,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         try {
             DecodedJWT decodedJWT = JwtProvider.verifyAccessToken(jwt);
             Long id = decodedJWT.getClaim("id").asLong();
-            String role = decodedJWT.getClaim("role").asString();
 
             User user = User.builder().id(id).build();
             MyUserDetails myUserDetails = new MyUserDetails(user);
