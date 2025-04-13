@@ -27,8 +27,11 @@ public class User extends BaseTimeEntity {
     @Column(name = "username", unique = true, nullable = false)
     private String username;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "provider", nullable = false)
+    private String provider;
+
+    @Column(name = "profile_image_url", nullable = false)
+    private String profileImageUrl;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
@@ -38,16 +41,13 @@ public class User extends BaseTimeEntity {
     private Boolean isBlocked;
 
     @Builder
-    public User(Long id, String username, String password) {
+    public User(Long id, String username, String provider, String profileImageUrl) {
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.provider = provider;
+        this.profileImageUrl = profileImageUrl;
         this.role = Role.USER;
         this.isBlocked = false;
-    }
-
-    public void updatePassword(String password) {
-        this.password = password;
     }
 
     public String getRoleKey() {
