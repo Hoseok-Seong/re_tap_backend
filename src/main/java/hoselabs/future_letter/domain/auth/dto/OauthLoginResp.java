@@ -1,5 +1,6 @@
 package hoselabs.future_letter.domain.auth.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import hoselabs.future_letter.domain.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,8 @@ public class OauthLoginResp {
     private String username;
     private String accessToken;
     private String refreshToken;
+
+    @JsonProperty("isNewUser")
     private boolean isNewUser;
 
     public OauthLoginResp(User user, String accessToken, String refreshToken, boolean isNewUser) {
