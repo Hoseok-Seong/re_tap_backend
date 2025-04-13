@@ -26,4 +26,8 @@ public class UserFindDao {
         user.orElseThrow(() -> new UserNotFoundException(username));
         return user.get();
     }
+
+    public Optional<User> findByUsernameAndProvider(final String username, final String provider) {
+        return userRepository.findByUsernameAndProvider(username, provider);
+    }
 }

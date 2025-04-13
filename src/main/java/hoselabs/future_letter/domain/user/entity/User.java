@@ -33,6 +33,9 @@ public class User extends BaseTimeEntity {
     @Column(name = "profile_image_url", nullable = false)
     private String profileImageUrl;
 
+    @Column(name = "nickname")
+    private String nickname;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;

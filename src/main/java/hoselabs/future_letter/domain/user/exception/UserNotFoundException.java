@@ -10,4 +10,8 @@ public class UserNotFoundException extends DataNotFoundException {
     public UserNotFoundException(String username) {
         super(username + " is not found");
     }
+
+    public UserNotFoundException(String username, String provider) {
+        super("User Not Found with username: " + username + " / provider: " + provider);
+    }
 }
