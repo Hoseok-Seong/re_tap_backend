@@ -10,6 +10,8 @@ import hoselabs.future_letter.domain.user.dao.UserRepository;
 import hoselabs.future_letter.domain.user.entity.User;
 import hoselabs.future_letter.global.jwt.JwtProvider;
 import hoselabs.future_letter.infra.oauth.GoogleApiClient;
+import hoselabs.future_letter.infra.oauth.KakaoApiClient;
+import hoselabs.future_letter.infra.oauth.NaverApiClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +23,8 @@ import java.time.LocalDateTime;
 public class AuthService {
 
     private final GoogleApiClient googleApiClient;
+    private final KakaoApiClient kakaoApiClient;
+    private final NaverApiClient naverApiClient;
     private final UserFindDao userFindDao;
     private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
@@ -44,9 +48,9 @@ public class AuthService {
 
     private OauthUserInfo getUserInfo(String provider, String accessToken) {
         return switch (provider.toLowerCase()) {
-//            case "kakao" -> kakaoApiClient.getUserInfo(accessToken);
+            case "kakao" -> kakaoApiClient.getUserInfo(accessToken);
             case "google" -> googleApiClient.getUserInfo(accessToken);
-//            case "naver" -> naverApiClient.getUserInfo(accessToken);
+            case "naver" -> naverApiClient.getUserInfo(accessToken);
             default -> throw new RuntimeException("지원하지 않는 provider");
         };
     }
