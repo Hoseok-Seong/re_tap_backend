@@ -12,11 +12,13 @@ public enum ErrorCode {
     INVALID_TYPE_VALUE(400, "C005", "Invalid Type Value"),
     HANDLE_ACCESS_DENIED(403, "C006", "Access is Denied"),
     IO_EXCEPTION(500, "C007", "IO Exception"),
+    API_EXCEPTION(500, "C008", "API Exception"),
 
     // JWT
-    INVALID_ACCESS_TOKEN_VERIFICATION_FAILED(400, "JE01", "Invalid Access Token"),
-    INVALID_ACCESS_TOKEN_ACCESS_DENIED(400, "JE02", "Access Token Access Denied"),
-    INVALID_REFRESH_TOKEN(400, "JE03", "Invalid Refresh Token"),
+    INVALID_ACCESS_TOKEN_VERIFICATION_FAILED(401, "J001", "Invalid Access Token"),
+    INVALID_ACCESS_TOKEN_ACCESS_DENIED(401, "J002", "Access Token Access Denied"),
+    ACCESS_TOKEN_EXPIRED(401, "J003", "Access Token Expired"),
+    INVALID_REFRESH_TOKEN(401, "J004", "Invalid Refresh Token"),
 
     // USER
     SIGNIN_PASSWORD_MISMATCH(400, "U001", "Signin Password Mismatch"),

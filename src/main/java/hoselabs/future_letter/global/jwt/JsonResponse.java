@@ -7,16 +7,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JsonResponse {
-    private String statusCode;
-    private String code;
     private String message;
-    private Object data;
+    private String status;
+    private Object errors;
+    private String code;
 
-    public JsonResponse(String statusCode, String code, String message, Object data) {
-        this.statusCode = statusCode;
-        this.code = code;
+    public JsonResponse(String statusCode, String code, String message, Object errors) {
         this.message = message;
-        this.data = data;
+        this.status = statusCode;
+        this.errors = errors;
+        this.code = code;
     }
 
     public JsonResponse(String statusCode, String code, String message) {
@@ -25,21 +25,22 @@ public class JsonResponse {
 
     public String toJson() throws JsonProcessingException {
         Map<String, Object> jsonResponse = new HashMap<>();
-        jsonResponse.put("statusCode", statusCode);
-        jsonResponse.put("code", code);
+
         jsonResponse.put("message", message);
-        jsonResponse.put("data", data);
+        jsonResponse.put("status", status);
+        jsonResponse.put("errors", errors);
+        jsonResponse.put("code", code);
 
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(jsonResponse);
     }
 
     public String getStatusCode() {
-        return statusCode;
+        return status;
     }
 
     public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
+        this.status = statusCode;
     }
 
     public String getCode() {
@@ -59,10 +60,10 @@ public class JsonResponse {
     }
 
     public Object getData() {
-        return data;
+        return errors;
     }
 
     public void setData(Object data) {
-        this.data = data;
+        this.errors = data;
     }
 }

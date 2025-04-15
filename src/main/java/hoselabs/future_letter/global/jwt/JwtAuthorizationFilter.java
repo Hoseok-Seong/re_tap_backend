@@ -45,10 +45,24 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (SignatureVerificationException sve) {
             log.error("액세스 토큰 검증 실패");
+
+            JsonResponse jsonResponse = new JsonResponse("401", "J001", "액세스 토큰 검증 실패");
+            String jsonString = jsonResponse.toJson();
+
+            response.setStatus(401);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().println(jsonString);
         } catch (TokenExpiredException tee) {
             log.error("액세스 토큰 만료");
-        } finally {
-            chain.doFilter(request, response);
+
+            JsonResponse jsonResponse = new JsonResponse("401", "J003", "액세스 토큰 만료");
+            String jsonString = jsonResponse.toJson();
+
+            response.setStatus(401);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().println(jsonString);
         }
     }
 }

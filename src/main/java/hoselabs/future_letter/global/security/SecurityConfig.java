@@ -55,7 +55,7 @@ public class SecurityConfig {
                         (request, response, authException) -> {
                             log.error("액세스 토큰 검증 실패 : " + authException.getMessage());
 
-                            JsonResponse jsonResponse = new JsonResponse("401", "JE01", "액세스 토큰 검증 실패");
+                            JsonResponse jsonResponse = new JsonResponse("401", "J001", "액세스 토큰 검증 실패");
                             String jsonString = jsonResponse.toJson();
 
                             response.setStatus(401);
@@ -67,10 +67,10 @@ public class SecurityConfig {
                         (request, response, accessDeniedException) -> {
                             log.error("액세스 토큰 접근 실패 : " + accessDeniedException.getMessage());
 
-                            JsonResponse jsonResponse = new JsonResponse("401", "JE02", "액세스 토큰 접근 실패");
+                            JsonResponse jsonResponse = new JsonResponse("401", "J002", "액세스 토큰 접근 실패");
                             String jsonString = jsonResponse.toJson();
 
-                            response.setStatus(403);
+                            response.setStatus(401);
                             response.setContentType("application/json");
                             response.setCharacterEncoding("UTF-8");
                             response.getWriter().println(jsonString);
