@@ -25,18 +25,7 @@ public class LetterService {
 
         LetterStatus status = determineStatus(letterCreateReq.getIsSend(), letterCreateReq.getIsLocked());
 
-        final Letter letter = Letter.builder()
-                .userId(myUserDetails.getUser().getId())
-                .title(letterCreateReq.getTitle())
-                .content(letterCreateReq.getContent())
-                .isLocked(letterCreateReq.getIsLocked())
-                .arrivalDate(letterCreateReq.getArrivalDate())
-                .status(status)
-                .build();
-
-        letterRepository.save(letter);
-
-        return new LetterCreateResp(letter.getId());
+        return new LetterCreateResp(letterRepository.save(letterCreateReq.toEntity(myUserDetails.getUser().getId(), status)).getId());
     }
 
     private LetterStatus determineStatus(Boolean isSend, Boolean isLocked) {

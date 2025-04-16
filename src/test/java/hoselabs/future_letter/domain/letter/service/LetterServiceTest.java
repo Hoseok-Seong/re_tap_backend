@@ -1,0 +1,77 @@
+package hoselabs.future_letter.domain.letter.service;
+
+import hoselabs.future_letter.domain.letter.dao.LetterRepository;
+import hoselabs.future_letter.domain.letter.dto.LetterCreateReq;
+import hoselabs.future_letter.domain.letter.dto.LetterCreateResp;
+import hoselabs.future_letter.domain.letter.entity.Letter;
+import hoselabs.future_letter.domain.letter.entity.LetterStatus;
+import hoselabs.future_letter.domain.setup.MockTest;
+import hoselabs.future_letter.domain.user.entity.User;
+import hoselabs.future_letter.global.error.exception.UserDetailsException;
+import hoselabs.future_letter.global.security.MyUserDetails;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import java.time.LocalDateTime;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.BDDMockito.*;
+
+class LetterServiceTest extends MockTest {
+
+    @InjectMocks
+    private LetterService letterService;
+
+    @Mock
+    private LetterRepository letterRepository;
+
+    private User user;
+    private MyUserDetails userDetails;
+
+    @BeforeEach
+    void setUp() {
+        user = User.builder()
+                .id(1L)
+                .username("testuser")
+                .provider("kakao")
+                .build();
+
+        userDetails = new MyUserDetails(user);
+    }
+
+    @Test
+    void 편지_작성_성공() {
+        // given
+        LetterCreateReq req = new LetterCreateReq("제목", "내용", false, LocalDateTime.now(), true);
+
+        Letter saved = Letter.builder()
+                .id(123L)
+                .userId(user.getId())
+                .title(req.getTitle())
+                .content(req.getContent())
+                .status(LetterStatus.DELIVERED)
+                .build();
+
+        given(letterRepository.save(any())).willReturn(saved);
+
+        // when
+        LetterCreateResp result = letterService.createLetter(userDetails, req);
+
+        // then
+        assertThat(result.getLetterId()).isEqualTo(123L);
+    }
+
+    @Test
+    void 유저정보가_없으면_예외() {
+        // given
+        LetterCreateReq req = new LetterCreateReq("제목", "내용", false, LocalDateTime.now(), true);
+
+        // when & then
+        assertThatThrownBy(() -> letterService.createLetter(null, req))
+                .isInstanceOf(UserDetailsException.class);
+    }
+}
+
+
