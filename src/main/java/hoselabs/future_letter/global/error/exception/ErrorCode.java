@@ -22,7 +22,10 @@ public enum ErrorCode {
 
     // USER
     SIGNIN_PASSWORD_MISMATCH(400, "U001", "Signin Password Mismatch"),
-    USER_DUPLICATION(400, "U002", "User is Duplication");
+    USER_DUPLICATION(400, "U002", "User is Duplication"),
+
+    // SECURITY
+    USER_DETAILS_NULL(500, "S001", "UserDetails is Null");
 
     private final String code;
     private final String message;
