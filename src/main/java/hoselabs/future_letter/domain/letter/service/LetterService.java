@@ -3,6 +3,7 @@ package hoselabs.future_letter.domain.letter.service;
 import hoselabs.future_letter.domain.letter.dao.LetterRepository;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateReq;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateResp;
+import hoselabs.future_letter.domain.letter.dto.LetterListResp;
 import hoselabs.future_letter.domain.letter.entity.Letter;
 import hoselabs.future_letter.domain.letter.entity.LetterStatus;
 import hoselabs.future_letter.global.error.exception.UserDetailsException;
@@ -10,6 +11,9 @@ import hoselabs.future_letter.global.security.MyUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +40,23 @@ public class LetterService {
             return LetterStatus.SCHEDULED;
         }
         return LetterStatus.DELIVERED;
+    }
+
+    @Transactional
+    public LetterListResp getLetters(Long userId) {
+        List<Letter> letters = letterRepository.findAllByUserIdSorted(userId);
+
+        List<LetterListResp.LetterSummary> summaries = letters.stream()
+                .map(letter -> new LetterListResp.LetterSummary(
+                        letter.getId(),
+                        letter.getTitle(),
+                        letter.getArrivalDate().toLocalDate(),
+                        letter.getIsLocked(),
+                        letter.getArrivalDate().isBefore(LocalDateTime.now()), // isArrived
+                        letter.getReadAt() != null // isRead
+                ))
+                .toList();
+
+        return new LetterListResp(summaries);
     }
 }
