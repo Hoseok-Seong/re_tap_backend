@@ -3,6 +3,7 @@ package hoselabs.future_letter.domain.letter.service;
 import hoselabs.future_letter.domain.letter.dao.LetterRepository;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateReq;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateResp;
+import hoselabs.future_letter.domain.letter.dto.LetterListResp;
 import hoselabs.future_letter.domain.letter.entity.Letter;
 import hoselabs.future_letter.domain.letter.entity.LetterStatus;
 import hoselabs.future_letter.domain.setup.MockTest;
@@ -15,6 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
@@ -71,6 +73,46 @@ class LetterServiceTest extends MockTest {
         // when & then
         assertThatThrownBy(() -> letterService.createLetter(null, req))
                 .isInstanceOf(UserDetailsException.class);
+    }
+
+    @Test
+    void 편지_목록_조회_성공() {
+        // given
+        Letter unreadLetter = Letter.builder()
+                .id(1L)
+                .userId(user.getId())
+                .title("첫 번째 편지")
+                .arrivalDate(LocalDateTime.now().minusDays(1))
+                .isLocked(false)
+                .build(); // readAt = null → 읽지 않음
+
+        Letter readLetter = Letter.builder()
+                .id(2L)
+                .userId(user.getId())
+                .title("두 번째 편지")
+                .arrivalDate(LocalDateTime.now().plusDays(1))
+                .isLocked(true)
+                .build();
+
+        // 읽음 처리
+        readLetter.markAsRead(); // 읽은 상태로 처리
+
+        List<Letter> letters = List.of(unreadLetter, readLetter);
+
+        given(letterRepository.findAllByUserIdSorted(user.getId())).willReturn(letters);
+
+        // when
+        LetterListResp result = letterService.getLetters(user.getId());
+
+        // then
+        assertThat(result).isNotNull();
+        assertThat(result.getLetters()).hasSize(2);
+
+        LetterListResp.LetterSummary first = result.getLetters().get(0);
+        assertThat(first.getLetterId()).isEqualTo(1L);
+        assertThat(first.getTitle()).isEqualTo("첫 번째 편지");
+        assertThat(first.getIsRead()).isFalse();
+        assertThat(first.getIsArrived()).isTrue();
     }
 }
 
