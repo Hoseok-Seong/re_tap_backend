@@ -62,6 +62,14 @@ public class Letter extends BaseTimeEntity {
         this.status = status;
     }
 
+    public boolean isArrived() {
+        return arrivalDate != null && arrivalDate.isBefore(LocalDateTime.now());
+    }
+
+    public boolean isRead() {
+        return readAt != null;
+    }
+
     public void markAsRead() {
         this.readAt = LocalDateTime.now();
     }

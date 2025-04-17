@@ -2,6 +2,7 @@ package hoselabs.future_letter.domain.letter.controller;
 
 import hoselabs.future_letter.domain.letter.dto.LetterCreateReq;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateResp;
+import hoselabs.future_letter.domain.letter.dto.LetterDetailResp;
 import hoselabs.future_letter.domain.letter.dto.LetterListResp;
 import hoselabs.future_letter.domain.letter.service.LetterService;
 import hoselabs.future_letter.global.security.MyUserDetails;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,5 +34,10 @@ public class LetterController {
     @GetMapping("/letters")
     public LetterListResp getLetters(@AuthenticationPrincipal final MyUserDetails userDetails) {
         return letterService.getLetters(userDetails.getUser().getId());
+    }
+
+    @GetMapping("/letters/{id}")
+    public LetterDetailResp getLetter(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
+        return letterService.getLetter(userDetails.getUser().getId(), id);
     }
 }

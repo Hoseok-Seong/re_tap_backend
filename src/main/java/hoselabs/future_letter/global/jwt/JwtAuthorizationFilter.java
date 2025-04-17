@@ -4,6 +4,8 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import hoselabs.future_letter.domain.user.entity.User;
+import hoselabs.future_letter.global.error.exception.jwt.AccessTokenExpiredException;
+import hoselabs.future_letter.global.error.exception.jwt.AccessTokenVerificationFailedException;
 import hoselabs.future_letter.global.security.MyUserDetails;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -45,24 +47,10 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (SignatureVerificationException sve) {
             log.error("액세스 토큰 검증 실패");
-
-            JsonResponse jsonResponse = new JsonResponse("401", "J001", "액세스 토큰 검증 실패");
-            String jsonString = jsonResponse.toJson();
-
-            response.setStatus(401);
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().println(jsonString);
+            throw new AccessTokenVerificationFailedException();
         } catch (TokenExpiredException tee) {
             log.error("액세스 토큰 만료");
-
-            JsonResponse jsonResponse = new JsonResponse("401", "J003", "액세스 토큰 만료");
-            String jsonString = jsonResponse.toJson();
-
-            response.setStatus(401);
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().println(jsonString);
+            throw new AccessTokenExpiredException();
         }
     }
 }

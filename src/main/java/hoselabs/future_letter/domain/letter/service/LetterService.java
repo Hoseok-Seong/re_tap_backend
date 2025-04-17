@@ -3,9 +3,12 @@ package hoselabs.future_letter.domain.letter.service;
 import hoselabs.future_letter.domain.letter.dao.LetterRepository;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateReq;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateResp;
+import hoselabs.future_letter.domain.letter.dto.LetterDetailResp;
 import hoselabs.future_letter.domain.letter.dto.LetterListResp;
 import hoselabs.future_letter.domain.letter.entity.Letter;
 import hoselabs.future_letter.domain.letter.entity.LetterStatus;
+import hoselabs.future_letter.domain.letter.exception.LetterNotArrivedException;
+import hoselabs.future_letter.domain.letter.exception.LetterNotFoundException;
 import hoselabs.future_letter.global.error.exception.UserDetailsException;
 import hoselabs.future_letter.global.security.MyUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -59,4 +62,31 @@ public class LetterService {
 
         return new LetterListResp(summaries);
     }
+
+    @Transactional
+    public LetterDetailResp getLetter(Long userId, Long letterId) {
+        Letter letter = letterRepository.findByIdAndUserId(letterId, userId)
+                .orElseThrow(() -> new LetterNotFoundException(letterId));
+
+        if (!letter.isArrived()) {
+            throw new LetterNotArrivedException("편지가 아직 도착하지 않았습니다.");
+        }
+
+        if (!letter.isRead()) {
+            letter.markAsRead();
+        }
+
+        return new LetterDetailResp(
+                letter.getId(),
+                letter.getTitle(),
+                letter.getContent(),
+                letter.getArrivalDate().toLocalDate(),
+                letter.getIsLocked(),
+                letter.isArrived(),
+                letter.isRead(),
+                letter.getReadAt(),
+                letter.getStatus() == LetterStatus.DRAFT
+        );
+    }
+
 }

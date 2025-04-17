@@ -15,14 +15,18 @@ public enum ErrorCode {
     API_EXCEPTION(500, "C008", "API Exception"),
 
     // JWT
-    INVALID_ACCESS_TOKEN_VERIFICATION_FAILED(401, "J001", "Invalid Access Token"),
+    INVALID_ACCESS_TOKEN_VERIFICATION_FAILED(401, "J001", "Access Token Verification Failed"),
     INVALID_ACCESS_TOKEN_ACCESS_DENIED(401, "J002", "Access Token Access Denied"),
     ACCESS_TOKEN_EXPIRED(401, "J003", "Access Token Expired"),
     INVALID_REFRESH_TOKEN(401, "J004", "Invalid Refresh Token"),
+    REFRESH_TOKEN_EXPIRED(401, "J005", "Refresh Token Expired"),
 
     // USER
     SIGNIN_PASSWORD_MISMATCH(400, "U001", "Signin Password Mismatch"),
     USER_DUPLICATION(400, "U002", "User is Duplication"),
+
+    // LETTER
+    LETTER_NOT_ARRIVED(403, "L001", "Letter is not arrived"),
 
     // SECURITY
     USER_DETAILS_NULL(500, "S001", "UserDetails is Null");
