@@ -3,9 +3,12 @@ package hoselabs.future_letter.domain.letter.service;
 import hoselabs.future_letter.domain.letter.dao.LetterRepository;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateReq;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateResp;
+import hoselabs.future_letter.domain.letter.dto.LetterDetailResp;
 import hoselabs.future_letter.domain.letter.dto.LetterListResp;
 import hoselabs.future_letter.domain.letter.entity.Letter;
 import hoselabs.future_letter.domain.letter.entity.LetterStatus;
+import hoselabs.future_letter.domain.letter.exception.LetterNotArrivedException;
+import hoselabs.future_letter.domain.letter.exception.LetterNotFoundException;
 import hoselabs.future_letter.domain.setup.MockTest;
 import hoselabs.future_letter.domain.user.entity.User;
 import hoselabs.future_letter.global.error.exception.UserDetailsException;
@@ -17,6 +20,7 @@ import org.mockito.Mock;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
@@ -113,6 +117,96 @@ class LetterServiceTest extends MockTest {
         assertThat(first.getTitle()).isEqualTo("첫 번째 편지");
         assertThat(first.getIsRead()).isFalse();
         assertThat(first.getIsArrived()).isTrue();
+    }
+
+    @Test
+    void 편지_도착_읽지않음_조회_성공() {
+        // given
+        Long letterId = 100L;
+        Letter letter = Letter.builder()
+                .id(letterId)
+                .userId(user.getId())
+                .title("도착한 편지")
+                .content("내용입니다")
+                .arrivalDate(LocalDateTime.now().minusDays(1))
+                .isLocked(false)
+                .status(LetterStatus.DELIVERED)
+                .build();
+
+        given(letterRepository.findByIdAndUserId(letterId, user.getId()))
+                .willReturn(Optional.of(letter));
+
+        // when
+        LetterDetailResp result = letterService.getLetter(user.getId(), letterId);
+
+        // then
+        assertThat(result).isNotNull();
+        assertThat(result.getLetterId()).isEqualTo(letterId);
+        assertThat(result.getIsRead()).isTrue();
+        assertThat(result.getReadAt()).isNotNull(); // 읽은 시간 기록됨
+    }
+
+    @Test
+    void 편지_도착_이미읽음_조회_성공() {
+        // given
+        Long letterId = 101L;
+        LocalDateTime readTime = LocalDateTime.now().minusHours(1);
+
+        Letter letter = Letter.builder()
+                .id(letterId)
+                .userId(user.getId())
+                .title("읽은 편지")
+                .content("이미 읽었어요")
+                .arrivalDate(LocalDateTime.now().minusDays(2))
+                .isLocked(false)
+                .status(LetterStatus.DELIVERED)
+                .build();
+
+        letter.markAsRead(readTime);
+
+        given(letterRepository.findByIdAndUserId(letterId, user.getId()))
+                .willReturn(Optional.of(letter));
+
+        // when
+        LetterDetailResp result = letterService.getLetter(user.getId(), letterId);
+
+        // then
+        assertThat(result.getIsRead()).isTrue();
+        assertThat(result.getReadAt()).isEqualTo(readTime); // 기존 readAt 유지
+    }
+
+    @Test
+    void 편지_없으면_예외() {
+        // given
+        Long letterId = 999L;
+        given(letterRepository.findByIdAndUserId(letterId, user.getId()))
+                .willReturn(Optional.empty());
+
+        // expect
+        assertThatThrownBy(() -> letterService.getLetter(user.getId(), letterId))
+                .isInstanceOf(LetterNotFoundException.class);
+    }
+
+    @Test
+    void 편지_도착_전이면_예외() {
+        // given
+        Long letterId = 102L;
+        Letter letter = Letter.builder()
+                .id(letterId)
+                .userId(user.getId())
+                .title("미래의 편지")
+                .content("아직 도착 안했어요")
+                .arrivalDate(LocalDateTime.now().plusDays(1))
+                .isLocked(true)
+                .status(LetterStatus.SCHEDULED)
+                .build();
+
+        given(letterRepository.findByIdAndUserId(letterId, user.getId()))
+                .willReturn(Optional.of(letter));
+
+        // expect
+        assertThatThrownBy(() -> letterService.getLetter(user.getId(), letterId))
+                .isInstanceOf(LetterNotArrivedException.class);
     }
 }
 
