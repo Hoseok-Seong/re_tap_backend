@@ -1,0 +1,702 @@
+[
+  {
+    "no": "1",
+    "author": "라이너 마리아 릴케",
+    "krContent": "마음속에 풀리지 않은 모든 것에 인내심을 갖고 질문 자체를 사랑하도록 노력하세요.",
+    "enContent": "Be patient toward all that is unsolved in your heart and try to love the questions themselves.",
+    "subject": "Life"
+  },
+  {
+    "no": "2",
+    "author": "찰스 R. 스윈돌",
+    "krContent": "삶은 10%가 일어나고, 90%는 그것에 어떻게 반응하느냐에 달려 있다.",
+    "enContent": "Life is 10% what happens to us and 90% how we react to it.",
+    "subject": "Life"
+  },
+  {
+    "no": "3",
+    "author": "스티브 잡스",
+    "krContent": "당신의 시간은 제한되어 있으니, 다른 사람의 삶을 사느라 낭비하지 마라.",
+    "enContent": "Your time is limited, so don’t waste it living someone else’s life.",
+    "subject": "Life"
+  },
+  {
+    "no": "4",
+    "author": "조지 버나드 쇼",
+    "krContent": "삶은 자신을 찾는 것이 아닙니다. 자신을 창조하는 것입니다.",
+    "enContent": "Life isn’t about finding yourself. It’s about creating yourself.",
+    "subject": "Life"
+  },
+  {
+    "no": "5",
+    "author": "테레사 수녀",
+    "krContent": "인생은 모험입니다, 감히.",
+    "enContent": "Life is an adventure, dare it.",
+    "subject": "Life"
+  },
+  {
+    "no": "6",
+    "author": "메이 웨스트",
+    "krContent": "삶은 단 한 번뿐이다. 하지만 올바르게 산다면, 한 번으로도 충분하다.",
+    "enContent": "You only live once, but if you do it right, once is enough.",
+    "subject": "Life"
+  },
+  {
+    "no": "7",
+    "author": "엘리너 루즈벨트",
+    "krContent": "미래는 꿈의 아름다움을 믿는 사람들에게 달려 있다.",
+    "enContent": "The future belongs to those who believe in the beauty of their dreams.",
+    "subject": "Life"
+  },
+  {
+    "no": "8",
+    "author": "프리드리히 니체",
+    "krContent": "산다는 것은 고통받는 것이고, 살아남는다는 것은 고통 속에서 어떤 의미를 찾는 것이다.",
+    "enContent": "To live is to suffer, to survive is to find some meaning in the suffering.",
+    "subject": "Life"
+  },
+  {
+    "no": "9",
+    "author": "아서 루빈스타인",
+    "krContent": "삶을 사랑하라, 그러면 삶도 너를 사랑할 것이다.",
+    "enContent": "Love life, and life will love you back.",
+    "subject": "Life"
+  },
+  {
+    "no": "10",
+    "author": "마크 트웨인",
+    "krContent": "삶은 짧다. 규칙을 깨고, 빨리 용서하고, 진심으로 사랑하라.",
+    "enContent": "Life is short, break the rules, forgive quickly, kiss slowly, love truly.",
+    "subject": "Life"
+  },
+  {
+    "no": "11",
+    "author": "윈스턴 처칠",
+    "krContent": "태도는 사소한 것이지만, 그것이 모든 것을 바꾼다.",
+    "enContent": "Attitude is a little thing that makes a big difference.",
+    "subject": "Attitude"
+  },
+  {
+    "no": "12",
+    "author": "루 홀츠",
+    "krContent": "능력은 당신이 무엇을 할 수 있는지 결정하고, 동기는 무엇을 할 것인지 결정하며, 태도는 얼마나 잘 할 것인지를 결정한다.",
+    "enContent": "Ability is what you’re capable of doing. Motivation determines what you do. Attitude determines how well you do it.",
+    "subject": "Attitude"
+  },
+  {
+    "no": "13",
+    "author": "지그 지글러",
+    "krContent": "당신의 재능이 아닌 당신의 태도가 당신 수준을 결정한다.",
+    "enContent": "Your attitude, not your aptitude, will determine your altitude.",
+    "subject": "Attitude"
+  },
+  {
+    "no": "14",
+    "author": "얼 나이팅게일",
+    "krContent": "삶에 대한 우리의 태도가 삶이 우리에게 취하는 태도를 결정한다.",
+    "enContent": "Our attitude towards life determines life’s attitude towards us.",
+    "subject": "Attitude"
+  },
+  {
+    "no": "15",
+    "author": "플로렌스 스코빌 신",
+    "krContent": "인생이라는 게임은 부메랑 게임이다. 우리의 생각, 행동, 말은 조만간 놀라운 정확성으로 우리에게 돌아온다.",
+    "enContent": "The game of life is a game of boomerangs. Our thoughts, deeds and words return to us sooner or later, with astounding accuracy.",
+    "subject": "Attitude"
+  },
+  {
+    "no": "16",
+    "author": "워렌 벤니스",
+    "krContent": "리더십은 비전을 현실로 바꾸는 능력이다.",
+    "enContent": "Leadership is the capacity to translate vision into reality.",
+    "subject": "Attitude"
+  },
+  {
+    "no": "17",
+    "author": "조이스 마이어",
+    "krContent": "긍정적인 삶을 살기 위해서는 부정적인 마음가짐을 버려야 한다.",
+    "enContent": "You cannot have a positive life and a negative mind.",
+    "subject": "Attitude"
+  },
+  {
+    "no": "18",
+    "author": "존 맥스웰",
+    "krContent": "사람들은 당신의 말을 듣지만, 그들은 당신의 태도를 느낀다.",
+    "enContent": "People may hear your words, but they feel your attitude.",
+    "subject": "Attitude"
+  },
+  {
+    "no": "19",
+    "author": "로이 T. 베넷",
+    "krContent": "생각을 바꾸면 세상을 바꿀 수 있다.",
+    "enContent": "Change your thoughts and you change your world.",
+    "subject": "Attitude"
+  },
+  {
+    "no": "20",
+    "author": "브라이언 트레이시",
+    "krContent": "감사하는 태도를 키우고, 일어나는 모든 일에 감사하라.",
+    "enContent": "Develop an attitude of gratitude, and give thanks for everything that happens to you.",
+    "subject": "Attitude"
+  },
+  {
+    "no": "21",
+    "author": "알렉산더 그레이엄 벨",
+    "krContent": "성공은 준비된 사람에게 찾아온다.",
+    "enContent": "Before anything else, preparation is the key to success.",
+    "subject": "Success"
+  },
+  {
+    "no": "22",
+    "author": "윈스턴 처칠",
+    "krContent": "성공은 실패를 통해 이루어진다.",
+    "enContent": "Success is stumbling from failure to failure with no loss of enthusiasm.",
+    "subject": "Success"
+  },
+  {
+    "no": "23",
+    "author": "루이 파스퇴르",
+    "krContent": "기회는 준비된 사람에게 온다.",
+    "enContent": "Chance favors the prepared mind.",
+    "subject": "Success"
+  },
+  {
+    "no": "24",
+    "author": "파블로 피카소",
+    "krContent": "행동은 모든 성공의 기초적인 열쇠이다.",
+    "enContent": "Action is the foundational key to all success.",
+    "subject": "Success"
+  },
+  {
+    "no": "25",
+    "author": "존 맥스웰",
+    "krContent": "성공은 매일 반복되는 작은 노력들의 합이다.",
+    "enContent": "Success is the sum of small efforts, repeated day in and day out.",
+    "subject": "Success"
+  },
+  {
+    "no": "26",
+    "author": "콜린 파월",
+    "krContent": "성공에는 비밀이 없다. 그것은 준비, 노력, 그리고 실패로부터 배운 결과이다.",
+    "enContent": "There are no secrets to success. It is the result of preparation, hard work, and learning from failure.",
+    "subject": "Success"
+  },
+  {
+    "no": "27",
+    "author": "헨리 포드",
+    "krContent": "함께 모이는 것은 시작이고, 함께 협력하는 것은 발전이다. 함께 일하는 것이 성공이다.",
+    "enContent": "Coming together is a beginning; keeping together is progress; working together is success.",
+    "subject": "Success"
+  },
+  {
+    "no": "28",
+    "author": "토니 로빈스",
+    "krContent": "당신의 영향력에 한계를 두는 것은 오직 당신의 상상력과 헌신 뿐이다.",
+    "enContent": "The only limit to your impact is your imagination and commitment.",
+    "subject": "Success"
+  },
+  {
+    "no": "29",
+    "author": "월트 디즈니",
+    "krContent": "우리의 모든 꿈은 그것을 추구할 용기만 있다면 이루어질 수 있다.",
+    "enContent": "All our dreams can come true, if we have the courage to pursue them.",
+    "subject": "Success"
+  },
+  {
+    "no": "30",
+    "author": "아서 애쉬",
+    "krContent": "성공은 끝이 아니라 여정이다. 결과보다는 과정이 더 중요할 때가 많다.",
+    "enContent": "Success is a journey, not a destination. The doing is often more important than the outcome.",
+    "subject": "Success"
+  },
+  {
+    "no": "31",
+    "author": "토머스 에디슨",
+    "krContent": "나는 실패한 것이 아니다. 단지 되지 않는 10,000가지 방법을 발견했을 뿐이다.",
+    "enContent": "I have not failed. I’ve just found 10,000 ways that won’t work.",
+    "subject": "Failure"
+  },
+  {
+    "no": "32",
+    "author": "헨리 포드",
+    "krContent": "실패는 단순히 다시 시작할 기회일 뿐이다, 이번에는 더 현명하게.",
+    "enContent": "Failure is simply the opportunity to begin again, this time more intelligently.",
+    "subject": "Failure"
+  },
+  {
+    "no": "33",
+    "author": "콘래드 힐튼",
+    "krContent": "성공은 행동과 연결되어 있다. 성공하는 사람들은 계속해서 앞으로 나아간다.",
+    "enContent": "Success seems to be connected with action. Successful people keep moving.",
+    "subject": "Failure"
+  },
+  {
+    "no": "34",
+    "author": "로버트 F. 케네디",
+    "krContent": "위대하게 실패할 용기가 있는 사람만이 위대한 성과를 이룰 수 있다.",
+    "enContent": "Only those who dare to fail greatly can ever achieve greatly.",
+    "subject": "Failure"
+  },
+  {
+    "no": "35",
+    "author": "존 듀이",
+    "krContent": "실패는 교훈을 준다. 진정으로 생각하는 사람은 실패에서 성공만큼이나 많은 것을 배운다.",
+    "enContent": "Failure is instructive. The person who really thinks learns quite as much from his failures as from his successes.",
+    "subject": "Failure"
+  },
+  {
+    "no": "36",
+    "author": "프랭클린 루즈벨트",
+    "krContent": "우리가 두려워해야 할 유일한 것은 두려움 그 자체이다.",
+    "enContent": "The only thing we have to fear is fear itself.",
+    "subject": "Failure"
+  },
+  {
+    "no": "37",
+    "author": "중국 속담",
+    "krContent": "실패는 성공의 어머니이다.",
+    "enContent": "Failure is the mother of success.",
+    "subject": "Failure"
+  },
+  {
+    "no": "38",
+    "author": "마이크 디트카",
+    "krContent": "당신이 시도하기를 멈추지 않는 한, 절대 패배자가 아니다.",
+    "enContent": "You’re never a loser until you quit trying.",
+    "subject": "Failure"
+  },
+  {
+    "no": "39",
+    "author": "마하트마 간디",
+    "krContent": "실수를 할 자유가 포함되지 않는 자유라면, 그런 자유는 가질 가치가 없다.",
+    "enContent": "Freedom is not worth having if it does not include the freedom to make mistakes.",
+    "subject": "Failure"
+  },
+  {
+    "no": "40",
+    "author": "아놀드 슈워제네거",
+    "krContent": "힘은 이기는 데서 오는 것이 아니다. 당신의 고난이 당신의 힘을 키운다.",
+    "enContent": "Strength does not come from winning. Your struggles develop your strengths.",
+    "subject": "Failure"
+  },
+  {
+    "no": "41",
+    "author": "앙투안 드 생텍쥐페리",
+    "krContent": "사랑은 두 사람이 서로를 응시하는 것이 아니라, 함께 같은 방향을 바라보는 것이다.",
+    "enContent": "Love does not consist in gazing at each other, but in looking outward together in the same direction.",
+    "subject": "Love"
+  },
+  {
+    "no": "42",
+    "author": "마하트마 간디",
+    "krContent": "사랑이 있는 곳에 생명이 있다.",
+    "enContent": "Where there is love there is life.",
+    "subject": "Love"
+  },
+  {
+    "no": "43",
+    "author": "버지니아 울프",
+    "krContent": "사랑은 모든 것을 가능하게 만든다.",
+    "enContent": "Love makes everything possible.",
+    "subject": "Love"
+  },
+  {
+    "no": "44",
+    "author": "엘리자베스 배럿 브라우닝",
+    "krContent": "사랑은 세상을 움직이는 것이 아니라, 인생을 가치 있게 만드는 것이다.",
+    "enContent": "Love doesn’t make the world go round. Love is what makes the ride worthwhile.",
+    "subject": "Love"
+  },
+  {
+    "no": "45",
+    "author": "마틴 루터 킹 주니어",
+    "krContent": "사랑은 적을 친구로 바꿀 수 있는 유일한 힘이다.",
+    "enContent": "Love is the only force capable of transforming an enemy into a friend.",
+    "subject": "Love"
+  },
+  {
+    "no": "46",
+    "author": "테레사 수녀",
+    "krContent": "미소로 서로를 대합시다. 미소는 사랑의 시작입니다.",
+    "enContent": "Let us always meet each other with a smile, for the smile is the beginning of love.",
+    "subject": "Love"
+  },
+  {
+    "no": "47",
+    "author": "마하트마 간디",
+    "krContent": "자신을 찾는 가장 좋은 방법은 다른 사람을 위해 봉사하며 자신을 잃는 것이다.",
+    "enContent": "The best way to find yourself is to lose yourself in the service of others.",
+    "subject": "Love"
+  },
+  {
+    "no": "48",
+    "author": "마더 테레사",
+    "krContent": "위대한 일을 할 수는 없더라도, 우리는 큰 사랑으로 작은 일을 할 수 있다.",
+    "enContent": "Not all of us can do great things. But we can do small things with great love.",
+    "subject": "Love"
+  },
+  {
+    "no": "49",
+    "author": "오쇼",
+    "krContent": "사랑은 소유하려는 것이 아니라, 서로를 자유롭게 하는 것이다.",
+    "enContent": "Love is not about possession. Love is about appreciation.",
+    "subject": "Love"
+  },
+  {
+    "no": "50",
+    "author": "윌리엄 셰익스피어",
+    "krContent": "사랑은 눈으로 보지 않고 마음으로 본다. 그래서 큐피드가 눈을 가리고 그려진 것이다.",
+    "enContent": "Love looks not with the eyes, but with the mind, and therefore is winged Cupid painted blind.",
+    "subject": "Love"
+  },
+  {
+    "no": "51",
+    "author": "아리스토텔레스",
+    "krContent": "행복은 그 자체로 목적이다.",
+    "enContent": "Happiness is the meaning and the purpose of life, the whole aim and end of human existence.",
+    "subject": "Happiness"
+  },
+  {
+    "no": "52",
+    "author": "에이브러햄 링컨",
+    "krContent": "대부분의 사람들은 자신이 마음먹은 만큼 행복하다.",
+    "enContent": "Most folks are as happy as they make up their minds to be.",
+    "subject": "Happiness"
+  },
+  {
+    "no": "53",
+    "author": "마르쿠스 아우렐리우스",
+    "krContent": "삶의 행복은 당신의 생각의 질에 달려 있다.",
+    "enContent": "The happiness of your life depends upon the quality of your thoughts.",
+    "subject": "Happiness"
+  },
+  {
+    "no": "54",
+    "author": "헬렌 켈러",
+    "krContent": "행복은 작은 것들에서 시작된다.",
+    "enContent": "Happiness is the final and perfect fruit of obedience to the laws of life.",
+    "subject": "Happiness"
+  },
+  {
+    "no": "55",
+    "author": "랄프 왈도 에머슨",
+    "krContent": "행복은 목적지가 아니라 여정이다.",
+    "enContent": "Life is a journey, not a destination.",
+    "subject": "Happiness"
+  },
+  {
+    "no": "56",
+    "author": "헨리 데이비드 소로우",
+    "krContent": "행복은 나비와 같다. 쫓아갈수록 멀어지고, 가만히 있을 때 다가온다.",
+    "enContent": "Happiness is like a butterfly; the more you chase it, the more it will elude you.",
+    "subject": "Happiness"
+  },
+  {
+    "no": "57",
+    "author": "미상",
+    "krContent": "행복은 우리가 가진 것에 감사할 때 찾아온다.",
+    "enContent": "Happiness comes when we stop taking life for granted.",
+    "subject": "Happiness"
+  },
+  {
+    "no": "58",
+    "author": "앤 프랭크",
+    "krContent": "행복은 다른 사람을 행복하게 만들 때 찾아온다.",
+    "enContent": "Whoever is happy will make others happy too.",
+    "subject": "Happiness"
+  },
+  {
+    "no": "59",
+    "author": "달라이 라마",
+    "krContent": "행복은 이미 만들어진 것이 아니다. 당신의 행동에서 비롯된다.",
+    "enContent": "Happiness is not something ready-made. It comes from your own actions.",
+    "subject": "Happiness"
+  },
+  {
+    "no": "60",
+    "author": "로이 T. 베넷",
+    "krContent": "행복은 당신의 사고방식과 태도에 달려 있다.",
+    "enContent": "Happiness depends on your mindset and attitude.",
+    "subject": "Happiness"
+  },
+  {
+    "no": "61",
+    "author": "마크 트웨인",
+    "krContent": "용기는 두려움을 이기는 것이 아니라, 두려움 속에서도 행동하는 것이다.",
+    "enContent": "Courage is resistance to fear, mastery of fear – not absence of fear.",
+    "subject": "Courage"
+  },
+  {
+    "no": "62",
+    "author": "윈스턴 처칠",
+    "krContent": "성공은 끝이 아니며, 실패는 치명적이지 않다. 중요한 것은 계속할 용기다.",
+    "enContent": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+    "subject": "Courage"
+  },
+  {
+    "no": "63",
+    "author": "존 F. 케네디",
+    "krContent": "대담하게 실패할 용기를 가진 자만이 위대한 성취를 이룰 수 있다.",
+    "enContent": "Those who dare to fail miserably can achieve greatly.",
+    "subject": "Courage"
+  },
+  {
+    "no": "64",
+    "author": "넬슨 만델라",
+    "krContent": "언제나 불가능해 보이지만, 결국 이루어진다.",
+    "enContent": "It always seems impossible until it’s done.",
+    "subject": "Courage"
+  },
+  {
+    "no": "65",
+    "author": "무하마드 알리",
+    "krContent": "위험을 감수할 용기가 없는 사람은 삶에서 아무것도 이룰 수 없다.",
+    "enContent": "He who is not courageous enough to take risks will accomplish nothing in life.",
+    "subject": "Courage"
+  },
+  {
+    "no": "66",
+    "author": "마야 안젤루",
+    "krContent": "용기는 모든 덕목 중 가장 중요한 것이다. 용기가 없으면 다른 덕목을 지속적으로 실천할 수 없다.",
+    "enContent": "Courage is the most important of all the virtues because without courage, you can’t practice any other virtue consistently.",
+    "subject": "Courage"
+  },
+  {
+    "no": "67",
+    "author": "어니스트 헤밍웨이",
+    "krContent": "용기는 압박 속에서도 품위를 유지하는 것이다.",
+    "enContent": "Courage is grace under pressure.",
+    "subject": "Courage"
+  },
+  {
+    "no": "68",
+    "author": "조지 S. 패튼",
+    "krContent": "용기는 두려움을 조금 더 오래 참는 것이다.",
+    "enContent": "Courage is fear holding on a minute longer.",
+    "subject": "Courage"
+  },
+  {
+    "no": "69",
+    "author": "브렌 브라운",
+    "krContent": "용기를 선택할 수도 있고, 안락함을 선택할 수도 있지만, 둘 다 선택할 수는 없다.",
+    "enContent": "You can choose courage, or you can choose comfort, but you cannot choose both.",
+    "subject": "Courage"
+  },
+  {
+    "no": "70",
+    "author": "랄프 월도 에머슨",
+    "krContent": "두려워하는 일을 해내라. 그러면 두려움은 사라질 것이다.",
+    "enContent": "Do the thing you fear, and the death of fear is certain.",
+    "subject": "Courage"
+  },
+  {
+    "no": "71",
+    "author": "윌리엄 아서 워드",
+    "krContent": "감사를 느끼고도 표현하지 않는 것은 선물을 포장해 놓고 주지 않는 것과 같다.",
+    "enContent": "Feeling gratitude and not expressing it is like wrapping a present and not giving it.",
+    "subject": "Gratitude"
+  },
+  {
+    "no": "72",
+    "author": "멜로디 비티",
+    "krContent": "감사는 삶을 온전히 풍요롭게 만들어 준다.",
+    "enContent": "Gratitude unlocks the fullness of life.",
+    "subject": "Gratitude"
+  },
+  {
+    "no": "73",
+    "author": "헨리 데이비드 소로우",
+    "krContent": "나는 내 자신과 내가 가진 것에 감사한다. 나의 감사는 끝이 없다.",
+    "enContent": "I am grateful for what I am and have. My thanksgiving is perpetual.",
+    "subject": "Gratitude"
+  },
+  {
+    "no": "74",
+    "author": "존 F. 케네디",
+    "krContent": "우리가 감사를 표현할 때, 말로만 그치는 것이 아니라 행동으로 보여주는 것이 최고의 감사임을 잊지 말아야 한다.",
+    "enContent": "As we express our gratitude, we must never forget that the highest appreciation is not to utter words, but to live by them.",
+    "subject": "Gratitude"
+  },
+  {
+    "no": "75",
+    "author": "오프라 윈프리",
+    "krContent": "당신이 가진 것에 감사하면 더 많은 것을 얻게 될 것이다. 없는 것에만 집중하면 결코 만족할 수 없다.",
+    "enContent": "Be thankful for what you have; you’ll end up having more. If you concentrate on what you don’t have, you will never, ever have enough.",
+    "subject": "Gratitude"
+  },
+  {
+    "no": "76",
+    "author": "브라이스 코트니",
+    "krContent": "감사는 삶을 선물처럼 느끼게 하는 능력이다. 이는 자기중심적인 생각에서 우리를 해방시킨다.",
+    "enContent": "Gratitude is the ability to experience life as a gift. It liberates us from the prison of self-preoccupation.",
+    "subject": "Gratitude"
+  },
+  {
+    "no": "77",
+    "author": "마크 트웨인",
+    "krContent": "기쁨을 온전히 누리려면, 그 기쁨을 나눌 누군가가 있어야 한다.",
+    "enContent": "To get the full value of joy, you must have someone to divide it with.",
+    "subject": "Gratitude"
+  },
+  {
+    "no": "78",
+    "author": "마하트마 간디",
+    "krContent": "감사는 감사의 시작이고, 진정한 감사는 그것을 행동으로 완성하는 것이다.",
+    "enContent": "Thankfulness is the beginning of gratitude. Gratitude is the completion of thankfulness.",
+    "subject": "Gratitude"
+  },
+  {
+    "no": "79",
+    "author": "브라이언 트레이시",
+    "krContent": "감사하는 태도를 기르고, 당신에게 일어나는 모든 일에 감사하라. 모든 한 걸음이 더 크고 나은 것을 이루는 길임을 기억하라.",
+    "enContent": "Develop an attitude of gratitude, and give thanks for everything that happens to you, knowing that every step forward is a step toward achieving something bigger and better.",
+    "subject": "Gratitude"
+  },
+  {
+    "no": "80",
+    "author": "에픽테토스",
+    "krContent": "지혜로운 사람은 자신이 가지지 못한 것을 슬퍼하지 않고, 자신이 가진 것에 기뻐한다.",
+    "enContent": "He is a wise man who does not grieve for the things which he has not, but rejoices for those which he has.",
+    "subject": "Gratitude"
+  },
+  {
+    "no": "81",
+    "author": "레오나르도 다 빈치",
+    "krContent": "배움은 결코 마음을 지치게 하지 않는다.",
+    "enContent": "Learning never exhausts the mind.",
+    "subject": "Learning"
+  },
+  {
+    "no": "82",
+    "author": "프랜시스 베이컨",
+    "krContent": "지식은 곧 힘이다.",
+    "enContent": "Knowledge is power.",
+    "subject": "Learning"
+  },
+  {
+    "no": "83",
+    "author": "에릭 호퍼",
+    "krContent": "변화의 시대에 배움을 추구하는 자가 세상을 차지한다.",
+    "enContent": "In times of change, learners inherit the earth.",
+    "subject": "Learning"
+  },
+  {
+    "no": "84",
+    "author": "벤저민 프랭클린",
+    "krContent": "지식에 대한 투자는 최고의 이익을 가져다준다.",
+    "enContent": "An investment in knowledge pays the best interest.",
+    "subject": "Learning"
+  },
+  {
+    "no": "85",
+    "author": "알버트 아인슈타인",
+    "krContent": "지적 성장은 태어날 때 시작되어 죽을 때까지 계속되어야 한다.",
+    "enContent": "Intellectual growth should commence at birth and cease only at death.",
+    "subject": "Learning"
+  },
+  {
+    "no": "86",
+    "author": "윌리엄 워드",
+    "krContent": "호기심은 배움이라는 촛불의 심지와 같다.",
+    "enContent": "Curiosity is the wick in the candle of learning.",
+    "subject": "Learning"
+  },
+  {
+    "no": "87",
+    "author": "존 듀이",
+    "krContent": "교육은 삶을 준비하는 것이 아니라, 삶 그 자체이다.",
+    "enContent": "Education is not preparation for life; education is life itself.",
+    "subject": "Learning"
+  },
+  {
+    "no": "88",
+    "author": "달라이 라마",
+    "krContent": "당신이 말할 때는 이미 알고 있는 것을 반복할 뿐이다. 하지만 듣는다면 새로운 것을 배울 수 있다.",
+    "enContent": "When you talk, you are only repeating what you already know. But if you listen, you may learn something new.",
+    "subject": "Learning"
+  },
+  {
+    "no": "89",
+    "author": "헬렌 켈러",
+    "krContent": "인격은 편안함과 고요 속에서 형성되지 않는다. 오직 시련과 고난을 통해서만 영혼이 강해질 수 있다.",
+    "enContent": "Character cannot be developed in ease and quiet. Only through experience of trial and suffering can the soul be strengthened.",
+    "subject": "Learning"
+  },
+  {
+    "no": "90",
+    "author": "나폴레옹 힐",
+    "krContent": "사람의 마음이 상상하고 믿을 수 있는 것은 무엇이든 이뤄낼 수 있다.",
+    "enContent": "Whatever the mind of man can conceive and believe, it can achieve.",
+    "subject": "Learning"
+  },
+  {
+    "no": "91",
+    "author": "빈센트 반 고흐",
+    "krContent": "위대한 일은 작은 시작에서 비롯된다.",
+    "enContent": "Great things are done by a series of small things brought together.",
+    "subject": "Inspiration"
+  },
+  {
+    "no": "92",
+    "author": "마하트마 간디",
+    "krContent": "미래는 당신이 오늘 무엇을 하는가에 달려 있다.",
+    "enContent": "The future depends on what you do today.",
+    "subject": "Inspiration"
+  },
+  {
+    "no": "93",
+    "author": "보비 언서",
+    "krContent": "성공은 준비된 사람에게 온다.",
+    "enContent": "Success is where preparation and opportunity meet.",
+    "subject": "Inspiration"
+  },
+  {
+    "no": "94",
+    "author": "존 F. 케네디",
+    "krContent": "노력과 용기만으로는 충분하지 않습니다. 목적과 방향이 필요합니다.",
+    "enContent": "Efforts and courage are not enough without purpose and direction.",
+    "subject": "Inspiration"
+  },
+  {
+    "no": "95",
+    "author": "랄프 왈도 에머슨",
+    "krContent": "길이 있는 곳으로 가지 말고, 길이 없는 곳으로 가서 흔적을 남기세요.",
+    "enContent": "Do not go where the path may lead, go instead where there is no path and leave a trail.",
+    "subject": "Inspiration"
+  },
+  {
+    "no": "96",
+    "author": "월트 디즈니",
+    "krContent": "우리의 모든 꿈은 이루어질 수 있습니다. 만약 그것을 추구할 용기가 있다면요.",
+    "enContent": "All our dreams can come true, if we have the courage to pursue them.",
+    "subject": "Inspiration"
+  },
+  {
+    "no": "97",
+    "author": "마이클 조던",
+    "krContent": "어떤 사람들은 일이 일어나기를 바라기만 하고, 어떤 사람들은 소망하지만, 다른 사람들은 그것을 이루어냅니다.",
+    "enContent": "Some people want it to happen, some wish it would happen, others make it happen.",
+    "subject": "Inspiration"
+  },
+  {
+    "no": "98",
+    "author": "시어도어 루스벨트",
+    "krContent": "당신이 할 수 있다고 믿으면, 이미 반은 이룬 것이다.",
+    "enContent": "Believe you can, and you’re halfway there.",
+    "subject": "Inspiration"
+  },
+  {
+    "no": "99",
+    "author": "알베르트 아인슈타인",
+    "krContent": "어제와 똑같이 살면서 다른 미래를 기대하는 것은 미친 짓이다.",
+    "enContent": "Insanity is doing the same thing over and over again and expecting different results.",
+    "subject": "Inspiration"
+  },
+  {
+    "no": "100",
+    "author": "로이 T. 베넷",
+    "krContent": "당신의 한계를 뛰어넘으세요. 그곳에서 성장이 시작됩니다.",
+    "enContent": "Push yourself beyond your limits. That’s where growth begins.",
+    "subject": "Inspiration"
+  }
+]

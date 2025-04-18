@@ -5,17 +5,19 @@ import hoselabs.future_letter.domain.letter.entity.Letter;
 import hoselabs.future_letter.domain.letter.entity.QLetter;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 public class LetterRepositoryImpl implements LetterRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
+    QLetter letter = QLetter.letter;
+
     @Override
     public List<Letter> findAllByUserIdSorted(Long userId) {
-        QLetter letter = QLetter.letter;
-
         return queryFactory
                 .selectFrom(letter)
                 .where(letter.userId.eq(userId))
@@ -24,6 +26,45 @@ public class LetterRepositoryImpl implements LetterRepositoryCustom {
                         letter.isLocked.asc(),
                         letter.arrivalDate.desc()
                 )
+                .fetch();
+    }
+
+    @Override
+    public int countUnreadAndArrived(Long userId) {
+        Long count = queryFactory
+                .select(letter.count())
+                .from(letter)
+                .where(
+                        letter.userId.eq(userId),
+                        letter.readAt.isNull(),
+                        letter.arrivalDate.loe(LocalDateTime.now())
+                )
+                .fetchOne();
+
+        return Objects.requireNonNullElse(count, 0L).intValue();
+    }
+
+    @Override
+    public List<Letter> findRecentLetters(Long userId, int limit) {
+        return queryFactory
+                .selectFrom(letter)
+                .where(letter.userId.eq(userId))
+                .orderBy(letter.createdAt.desc())
+                .limit(limit)
+                .fetch();
+    }
+
+    @Override
+    public List<Letter> findUpcomingLetters(Long userId, LocalDateTime from, LocalDateTime to, int limit) {
+        return queryFactory
+                .selectFrom(letter)
+                .where(
+                        letter.userId.eq(userId),
+                        letter.arrivalDate.between(from, to),
+                        letter.arrivalDate.gt(LocalDateTime.now()) // 아직 도착 안 한 편지
+                )
+                .orderBy(letter.arrivalDate.asc())
+                .limit(limit)
                 .fetch();
     }
 }

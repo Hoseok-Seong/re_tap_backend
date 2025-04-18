@@ -37,7 +37,7 @@ public class LetterController {
     }
 
     @GetMapping("/letters/{id}")
-    public LetterDetailResp getLetter(@AuthenticationPrincipal MyUserDetails userDetails, @PathVariable Long id) {
+    public LetterDetailResp getLetter(@AuthenticationPrincipal final MyUserDetails userDetails, @PathVariable final Long id) {
         return letterService.getLetter(userDetails.getUser().getId(), id);
     }
 }

@@ -45,7 +45,7 @@ public class LetterService {
         return LetterStatus.DELIVERED;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public LetterListResp getLetters(Long userId) {
         List<Letter> letters = letterRepository.findAllByUserIdSorted(userId);
 
