@@ -26,18 +26,16 @@ public class LetterController {
     @PostMapping("/letters")
     public ResponseEntity<LetterCreateResp> createLetter(@AuthenticationPrincipal final MyUserDetails myUserDetails,
                                                          @RequestBody @Valid final LetterCreateReq letterCreateReq) {
-        final LetterCreateResp letterCreateResp = letterService.createLetter(myUserDetails, letterCreateReq);
-
-        return ResponseEntity.ok().body(letterCreateResp);
+        return ResponseEntity.ok().body(letterService.createLetter(myUserDetails, letterCreateReq));
     }
 
     @GetMapping("/letters")
-    public LetterListResp getLetters(@AuthenticationPrincipal final MyUserDetails userDetails) {
-        return letterService.getLetters(userDetails.getUser().getId());
+    public ResponseEntity<LetterListResp> getLetters(@AuthenticationPrincipal final MyUserDetails userDetails) {
+        return ResponseEntity.ok().body(letterService.getLetters(userDetails.getUser().getId()));
     }
 
     @GetMapping("/letters/{id}")
-    public LetterDetailResp getLetter(@AuthenticationPrincipal final MyUserDetails userDetails, @PathVariable final Long id) {
-        return letterService.getLetter(userDetails.getUser().getId(), id);
+    public ResponseEntity<LetterDetailResp> getLetter(@AuthenticationPrincipal final MyUserDetails userDetails, @PathVariable final Long id) {
+        return ResponseEntity.ok().body(letterService.getLetter(userDetails.getUser().getId(), id));
     }
 }

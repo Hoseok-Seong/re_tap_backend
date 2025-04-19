@@ -55,7 +55,7 @@ public class HomeServiceTest extends MockTest {
     void 홈_화면_데이터_정상_조회() throws Exception {
         // given
         int unreadCount = 2;
-        HomeResp.Quote quote = new HomeResp.Quote("Steve Jobs", "한국어 명언", "English quote");
+        HomeResp.Quote quote = new HomeResp.Quote("1", "Steve Jobs", "한국어 명언", "English quote", "subject");
 
         Letter letter1 = Letter.builder()
                 .title("첫 번째 편지")

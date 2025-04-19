@@ -1,7 +1,7 @@
-package hoselabs.future_letter.domain.home.controller;
+package hoselabs.future_letter.domain.mypage.controller;
 
-import hoselabs.future_letter.domain.home.dto.HomeResp;
-import hoselabs.future_letter.domain.home.service.HomeService;
+import hoselabs.future_letter.domain.mypage.dto.MyPageResp;
+import hoselabs.future_letter.domain.mypage.service.MyPageService;
 import hoselabs.future_letter.global.security.MyUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
-public class HomeController {
+public class MyPageController {
 
-    private final HomeService homeService;
+    private final MyPageService myPageService;
 
-    @GetMapping("/home")
-    public ResponseEntity<HomeResp> getHome(@AuthenticationPrincipal final MyUserDetails userDetails) {
-        return ResponseEntity.ok().body(homeService.getHome(userDetails.getUser().getId()));
+    @GetMapping("/my-page")
+    public ResponseEntity<MyPageResp> getMyPage(@AuthenticationPrincipal final MyUserDetails userDetails) {
+        return ResponseEntity.ok().body(myPageService.getMyPage(userDetails.getUser()));
     }
 }

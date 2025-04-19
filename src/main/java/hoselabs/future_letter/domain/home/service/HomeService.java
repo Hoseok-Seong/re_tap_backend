@@ -34,7 +34,7 @@ public class HomeService {
                 ))
                 .toList();
 
-        // 4. 도착 예정 편지 (한달 이내)
+        // 4. 도착 예정 편지 3건 (한달 이내)
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime oneMonthLater = now.plusMonths(1);
         List<HomeResp.UpcomingLetter> upcomingLetters = letterRepository.findUpcomingLetters(userId, now, oneMonthLater, 3).stream()
