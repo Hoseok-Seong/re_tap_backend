@@ -37,4 +37,8 @@ public class RefreshToken extends BaseTimeEntity {
         this.refreshToken = refreshToken;
         this.expiresAt = expiresAt;
     }
+
+    public boolean isExpired() {
+        return expiresAt.isBefore(LocalDateTime.now());
+    }
 }

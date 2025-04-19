@@ -2,6 +2,8 @@ package hoselabs.future_letter.domain.auth.controller;
 
 import hoselabs.future_letter.domain.auth.dto.OauthLoginReq;
 import hoselabs.future_letter.domain.auth.dto.OauthLoginResp;
+import hoselabs.future_letter.domain.auth.dto.RefreshTokenReq;
+import hoselabs.future_letter.domain.auth.dto.RefreshTokenResp;
 import hoselabs.future_letter.domain.auth.service.AuthService;
 import hoselabs.future_letter.global.jwt.JwtProvider;
 import jakarta.validation.Valid;
@@ -24,5 +26,11 @@ public class AuthController {
 
         return ResponseEntity.ok().header(JwtProvider.ACCESS_TOKEN_HEADER, oauthLoginResp.getAccessToken())
                 .header(JwtProvider.REFRESH_TOKEN_HEADER, oauthLoginResp.getRefreshToken()).body(oauthLoginResp);
+    }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<RefreshTokenResp> refresh(@RequestBody @Valid final RefreshTokenReq req) {
+        RefreshTokenResp resp = authService.refresh(req.getRefreshToken());
+        return ResponseEntity.ok(resp);
     }
 }

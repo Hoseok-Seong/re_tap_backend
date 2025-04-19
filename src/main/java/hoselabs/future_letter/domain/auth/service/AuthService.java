@@ -4,10 +4,14 @@ import hoselabs.future_letter.domain.auth.dao.RefreshTokenRepository;
 import hoselabs.future_letter.domain.auth.dto.OauthLoginReq;
 import hoselabs.future_letter.domain.auth.dto.OauthLoginResp;
 import hoselabs.future_letter.domain.auth.dto.OauthUserInfo;
+import hoselabs.future_letter.domain.auth.dto.RefreshTokenResp;
 import hoselabs.future_letter.domain.auth.entity.RefreshToken;
 import hoselabs.future_letter.domain.user.dao.UserFindDao;
 import hoselabs.future_letter.domain.user.dao.UserRepository;
 import hoselabs.future_letter.domain.user.entity.User;
+import hoselabs.future_letter.domain.user.exception.UserNotFoundException;
+import hoselabs.future_letter.global.error.exception.jwt.InvalidRefreshTokenException;
+import hoselabs.future_letter.global.error.exception.jwt.RefreshTokenExpiredException;
 import hoselabs.future_letter.global.jwt.JwtProvider;
 import hoselabs.future_letter.infra.oauth.GoogleApiClient;
 import hoselabs.future_letter.infra.oauth.KakaoApiClient;
@@ -75,5 +79,26 @@ public class AuthService {
                         .expiresAt(LocalDateTime.now().plusDays(7))
                         .build()
         );
+    }
+
+    @Transactional
+    public RefreshTokenResp refresh(String refreshToken) {
+        RefreshToken token = refreshTokenRepository.findByRefreshToken(refreshToken)
+                .orElseThrow(InvalidRefreshTokenException::new);
+
+        if (token.isExpired()) {
+            refreshTokenRepository.delete(token);
+            throw new RefreshTokenExpiredException();
+        }
+
+        User user = userRepository.findById(token.getUserId())
+                .orElseThrow(() -> new UserNotFoundException(token.getUserId()));
+
+        String newAccessToken = JwtProvider.createAccessToken(user);
+        String newRefreshToken = JwtProvider.createRefreshToken(user);
+
+        saveRefreshToken(user, newRefreshToken);
+
+        return new RefreshTokenResp(newAccessToken, newRefreshToken);
     }
 }
