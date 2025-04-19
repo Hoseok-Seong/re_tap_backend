@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface LetterRepository extends JpaRepository<Letter, Long>, LetterRepositoryCustom {
     Optional<Letter> findByIdAndUserId(Long letterId, Long userId);
+    void deleteAllByUserId(Long userId);
 }

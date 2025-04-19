@@ -2,6 +2,7 @@ package hoselabs.future_letter.domain.user.controller;
 
 import hoselabs.future_letter.domain.user.dto.UpdateProfileReq;
 import hoselabs.future_letter.domain.user.dto.UpdateProfileResp;
+import hoselabs.future_letter.domain.user.dto.WithdrawResp;
 import hoselabs.future_letter.domain.user.service.UserService;
 import hoselabs.future_letter.global.security.MyUserDetails;
 import jakarta.validation.Valid;
@@ -27,5 +28,11 @@ public class UserController {
     ) {
         UpdateProfileResp resp = userService.updateProfile(userDetails.getUser(), req);
         return ResponseEntity.ok(resp);
+    }
+
+    @PostMapping("/user/withdraw")
+    public ResponseEntity<WithdrawResp> withdraw(@AuthenticationPrincipal final MyUserDetails userDetails) {
+        userService.withdraw(userDetails.getUser());
+        return ResponseEntity.ok(new WithdrawResp("회원 탈퇴가 완료되었습니다."));
     }
 }
