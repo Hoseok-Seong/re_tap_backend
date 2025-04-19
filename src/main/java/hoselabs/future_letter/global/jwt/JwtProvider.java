@@ -7,7 +7,9 @@ import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import hoselabs.future_letter.domain.user.entity.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JwtProvider {
     private static final String SUBJECT = "jwt";
     private static final int ACCESS_TOKEN_EXP = Integer.parseInt(System.getenv("JWT_ACCESS_TOKEN_EXP"));
@@ -18,7 +20,7 @@ public class JwtProvider {
     private static final String ACCESS_SECRET = System.getenv("JWT_ACCESS_HS512_SECRET");
     private static final String REFRESH_SECRET = System.getenv("JWT_REFRESH_HS512_SECRET");
 
-    public static String createAccessToken(User user) {
+    public String createAccessToken(User user) {
         String jwt = JWT.create()
                 .withSubject(SUBJECT)
                 .withExpiresAt(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXP))
@@ -27,7 +29,7 @@ public class JwtProvider {
         return TOKEN_PREFIX + jwt;
     }
 
-    public static String createRefreshToken(User user) {
+    public String createRefreshToken(User user) {
         String jwt = JWT.create()
                 .withSubject(SUBJECT)
                 .withExpiresAt(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXP))

@@ -32,6 +32,7 @@ public class AuthService {
     private final UserFindDao userFindDao;
     private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final JwtProvider jwtProvider;
 
     @Transactional
     public OauthLoginResp oauthLogin(OauthLoginReq request) {
@@ -40,8 +41,8 @@ public class AuthService {
         User user = userFindDao.findByUsernameAndProvider(userInfo.getUsername(), request.getProvider())
                 .orElseGet(() -> registerNewUser(userInfo, request.getProvider()));
 
-        String accessToken = JwtProvider.createAccessToken(user);
-        String refreshToken = JwtProvider.createRefreshToken(user);
+        String accessToken = jwtProvider.createAccessToken(user);
+        String refreshToken = jwtProvider.createRefreshToken(user);
 
         saveRefreshToken(user, refreshToken);
 
@@ -94,8 +95,8 @@ public class AuthService {
         User user = userRepository.findById(token.getUserId())
                 .orElseThrow(() -> new UserNotFoundException(token.getUserId()));
 
-        String newAccessToken = JwtProvider.createAccessToken(user);
-        String newRefreshToken = JwtProvider.createRefreshToken(user);
+        String newAccessToken = jwtProvider.createAccessToken(user);
+        String newRefreshToken = jwtProvider.createRefreshToken(user);
 
         saveRefreshToken(user, newRefreshToken);
 
