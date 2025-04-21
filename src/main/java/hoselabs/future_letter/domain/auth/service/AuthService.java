@@ -1,14 +1,18 @@
 package hoselabs.future_letter.domain.auth.service;
 
 import hoselabs.future_letter.domain.auth.dao.RefreshTokenRepository;
+import hoselabs.future_letter.domain.auth.dto.OauthCheckReq;
+import hoselabs.future_letter.domain.auth.dto.OauthCheckResp;
 import hoselabs.future_letter.domain.auth.dto.OauthLoginReq;
 import hoselabs.future_letter.domain.auth.dto.OauthLoginResp;
+import hoselabs.future_letter.domain.auth.dto.OauthRegisterReq;
 import hoselabs.future_letter.domain.auth.dto.OauthUserInfo;
 import hoselabs.future_letter.domain.auth.dto.RefreshTokenResp;
 import hoselabs.future_letter.domain.auth.entity.RefreshToken;
 import hoselabs.future_letter.domain.user.dao.UserFindDao;
 import hoselabs.future_letter.domain.user.dao.UserRepository;
 import hoselabs.future_letter.domain.user.entity.User;
+import hoselabs.future_letter.domain.user.exception.UserAlreadyExistsException;
 import hoselabs.future_letter.domain.user.exception.UserNotFoundException;
 import hoselabs.future_letter.global.error.exception.jwt.InvalidRefreshTokenException;
 import hoselabs.future_letter.global.error.exception.jwt.RefreshTokenExpiredException;
@@ -21,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,20 +40,47 @@ public class AuthService {
     private final JwtProvider jwtProvider;
 
     @Transactional
-    public OauthLoginResp oauthLogin(OauthLoginReq request) {
+    public OauthCheckResp check(OauthCheckReq request) {
         OauthUserInfo userInfo = getUserInfo(request.getProvider(), request.getAccessToken());
 
-        User user = userFindDao.findByUsernameAndProvider(userInfo.getUsername(), request.getProvider())
-                .orElseGet(() -> registerNewUser(userInfo, request.getProvider()));
+        Optional<User> userOpt = userFindDao.findByUsernameAndProvider(userInfo.getUsername(), request.getProvider());
+
+        boolean isNewUser = userOpt.isEmpty();
+
+        return new OauthCheckResp(isNewUser);
+    }
+
+    @Transactional
+    public OauthLoginResp register(OauthRegisterReq request) {
+        OauthUserInfo userInfo = getUserInfo(request.getProvider(), request.getAccessToken());
+
+        if (userRepository.existsByUsernameAndProvider(userInfo.getUsername(), request.getProvider())) {
+            throw new UserAlreadyExistsException();
+        }
+
+        User user = registerNewUser(userInfo, request.getProvider());
 
         String accessToken = jwtProvider.createAccessToken(user);
         String refreshToken = jwtProvider.createRefreshToken(user);
 
         saveRefreshToken(user, refreshToken);
 
-        boolean isNewUser = (user.getNickname() == null);
+        return new OauthLoginResp(user, accessToken, refreshToken, true);
+    }
 
-        return new OauthLoginResp(user, accessToken, refreshToken, isNewUser);
+    @Transactional
+    public OauthLoginResp oauthLogin(OauthLoginReq request) {
+        OauthUserInfo userInfo = getUserInfo(request.getProvider(), request.getAccessToken());
+
+        User user = userFindDao.findByUsernameAndProvider(userInfo.getUsername(), request.getProvider())
+                .orElseThrow(() -> new UserNotFoundException(userInfo.getUsername(), request.getProvider()));
+
+        String accessToken = jwtProvider.createAccessToken(user);
+        String refreshToken = jwtProvider.createRefreshToken(user);
+
+        saveRefreshToken(user, refreshToken);
+
+        return new OauthLoginResp(user, accessToken, refreshToken, false);
     }
 
     private OauthUserInfo getUserInfo(String provider, String accessToken) {

@@ -1,7 +1,10 @@
 package hoselabs.future_letter.domain.auth.controller;
 
+import hoselabs.future_letter.domain.auth.dto.OauthCheckReq;
+import hoselabs.future_letter.domain.auth.dto.OauthCheckResp;
 import hoselabs.future_letter.domain.auth.dto.OauthLoginReq;
 import hoselabs.future_letter.domain.auth.dto.OauthLoginResp;
+import hoselabs.future_letter.domain.auth.dto.OauthRegisterReq;
 import hoselabs.future_letter.domain.auth.dto.RefreshTokenReq;
 import hoselabs.future_letter.domain.auth.dto.RefreshTokenResp;
 import hoselabs.future_letter.domain.auth.service.AuthService;
@@ -19,6 +22,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
     private final AuthService authService;
+
+    @PostMapping("/check")
+    public ResponseEntity<OauthCheckResp> check(@RequestBody @Valid final OauthCheckReq oauthCheckReq) {
+        final OauthCheckResp oauthCheckResp = authService.check(oauthCheckReq);
+
+        return ResponseEntity.ok(oauthCheckResp);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<OauthLoginResp> register(@RequestBody @Valid final OauthRegisterReq oauthRegisterReq) {
+        final OauthLoginResp oauthLoginResp = authService.register(oauthRegisterReq);
+
+        return ResponseEntity.ok().header(JwtProvider.ACCESS_TOKEN_HEADER, oauthLoginResp.getAccessToken())
+                .header(JwtProvider.REFRESH_TOKEN_HEADER, oauthLoginResp.getRefreshToken()).body(oauthLoginResp);
+    }
 
     @PostMapping("/oauth-login")
     public ResponseEntity<OauthLoginResp> oauthLogin(@RequestBody @Valid final OauthLoginReq oauthLoginReq) {
