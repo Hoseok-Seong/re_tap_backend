@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 public class HomeResp {
     private int unreadCount;
@@ -27,6 +28,7 @@ public class HomeResp {
     }
 
     @Getter
+    @NoArgsConstructor
     @AllArgsConstructor
     public static class RecentLetter {
         private String title;
@@ -34,6 +36,7 @@ public class HomeResp {
     }
 
     @Getter
+    @NoArgsConstructor
     @AllArgsConstructor
     public static class UpcomingLetter {
         private String title;

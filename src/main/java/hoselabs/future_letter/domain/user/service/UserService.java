@@ -21,6 +21,7 @@ public class UserService {
     @Transactional
     public UpdateProfileResp updateProfile(User user, UpdateProfileReq req) {
         user.updateNickname(req.getNickname());
+
         return new UpdateProfileResp(user.getNickname());
     }
 

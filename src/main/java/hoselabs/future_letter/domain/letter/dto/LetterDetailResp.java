@@ -2,11 +2,13 @@ package hoselabs.future_letter.domain.letter.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 public class LetterDetailResp {
     private Long letterId;
