@@ -12,7 +12,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.*;
 
 public class UserServiceTest extends MockTest {
@@ -45,10 +48,12 @@ public class UserServiceTest extends MockTest {
     void 프로필_수정_성공() {
         // given
         UpdateProfileReq req = new UpdateProfileReq("변경된 닉네임");
-        user.updateNickname(req.getNickname());
+
+        // mocking: userRepository.findById(...) → user 반환
+        given(userRepository.findById(user.getId())).willReturn(Optional.of(user));
 
         // when
-        UpdateProfileResp resp = userService.updateProfile(user, req);
+        UpdateProfileResp resp = userService.updateProfile(user.getId(), req);
 
         // then
         assertThat(resp.getNickname()).isEqualTo("변경된 닉네임");
@@ -57,8 +62,11 @@ public class UserServiceTest extends MockTest {
 
     @Test
     void 회원탈퇴_성공() {
+        // mocking: userRepository.findById(...) → user 반환
+        given(userRepository.findById(user.getId())).willReturn(Optional.of(user));
+
         // when
-        userService.withdraw(user);
+        userService.withdraw(user.getId());
 
         // then
         verify(refreshTokenRepository, times(1)).deleteByUserId(user.getId());

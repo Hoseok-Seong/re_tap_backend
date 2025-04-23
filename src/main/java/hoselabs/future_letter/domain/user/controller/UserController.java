@@ -26,13 +26,13 @@ public class UserController {
             @AuthenticationPrincipal final MyUserDetails userDetails,
             @RequestBody @Valid final UpdateProfileReq req
     ) {
-        UpdateProfileResp resp = userService.updateProfile(userDetails.getUser(), req);
+        UpdateProfileResp resp = userService.updateProfile(userDetails.getUser().getId(), req);
         return ResponseEntity.ok(resp);
     }
 
     @PostMapping("/user/withdraw")
     public ResponseEntity<WithdrawResp> withdraw(@AuthenticationPrincipal final MyUserDetails userDetails) {
-        userService.withdraw(userDetails.getUser());
+        userService.withdraw(userDetails.getUser().getId());
         return ResponseEntity.ok(new WithdrawResp("회원 탈퇴가 완료되었습니다."));
     }
 }

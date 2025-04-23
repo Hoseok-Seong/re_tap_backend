@@ -6,6 +6,7 @@ import hoselabs.future_letter.domain.user.dao.UserRepository;
 import hoselabs.future_letter.domain.user.dto.UpdateProfileReq;
 import hoselabs.future_letter.domain.user.dto.UpdateProfileResp;
 import hoselabs.future_letter.domain.user.entity.User;
+import hoselabs.future_letter.domain.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,21 +20,26 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public UpdateProfileResp updateProfile(User user, UpdateProfileReq req) {
+    public UpdateProfileResp updateProfile(Long userId, UpdateProfileReq req) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+
         user.updateNickname(req.getNickname());
 
         return new UpdateProfileResp(user.getNickname());
     }
 
     @Transactional
-    public void withdraw(User user) {
+    public void withdraw(Long userId) {
         // 1. Refresh Token 삭제
-        refreshTokenRepository.deleteByUserId(user.getId());
+        refreshTokenRepository.deleteByUserId(userId);
 
         // 2. Letter 삭제 (userId 기준)
-        letterRepository.deleteAllByUserId(user.getId());
+        letterRepository.deleteAllByUserId(userId);
 
         // 3. User 삭제
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
         userRepository.delete(user);
     }
 }
