@@ -9,6 +9,7 @@ import hoselabs.future_letter.domain.letter.entity.Letter;
 import hoselabs.future_letter.domain.letter.entity.LetterStatus;
 import hoselabs.future_letter.domain.letter.exception.LetterNotArrivedException;
 import hoselabs.future_letter.domain.letter.exception.LetterNotFoundException;
+import hoselabs.future_letter.domain.user.exception.UserNotOwnerException;
 import hoselabs.future_letter.global.error.exception.UserDetailsException;
 import hoselabs.future_letter.global.security.MyUserDetails;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,24 @@ public class LetterService {
 
         LetterStatus status = determineStatus(letterCreateReq.getIsSend(), letterCreateReq.getIsLocked());
 
-        return new LetterCreateResp(letterRepository.save(letterCreateReq.toEntity(myUserDetails.getUser().getId(), status)).getId());
+        Long userId = myUserDetails.getUser().getId();
+
+        // 편지 ID가 null이 아니면 수정
+        if (letterCreateReq.getLetterId() != null) {
+            Letter letter = letterRepository.findById(letterCreateReq.getLetterId())
+                    .orElseThrow(() -> new LetterNotFoundException(letterCreateReq.getLetterId()));
+
+            if (!letter.getUserId().equals(userId)) {
+                throw new UserNotOwnerException();
+            }
+
+            letterCreateReq.updateEntity(letter, status);
+            return new LetterCreateResp(letter.getId()); // 수정 후 id 반환
+        }
+
+        // 새 편지 생성
+        Letter saved = letterRepository.save(letterCreateReq.toEntity(userId, status));
+        return new LetterCreateResp(saved.getId());
     }
 
     private LetterStatus determineStatus(Boolean isSend, Boolean isLocked) {

@@ -1,6 +1,5 @@
 package hoselabs.future_letter.global.error;
 
-import hoselabs.future_letter.global.error.ErrorResponse;
 import hoselabs.future_letter.global.error.exception.BusinessException;
 import hoselabs.future_letter.global.error.exception.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
@@ -10,13 +9,13 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.io.IOException;
 
-@ControllerAdvice
+@RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 

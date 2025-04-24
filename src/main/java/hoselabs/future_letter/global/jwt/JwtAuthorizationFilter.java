@@ -3,9 +3,10 @@ package hoselabs.future_letter.global.jwt;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hoselabs.future_letter.domain.user.entity.User;
-import hoselabs.future_letter.global.error.exception.jwt.AccessTokenExpiredException;
-import hoselabs.future_letter.global.error.exception.jwt.AccessTokenVerificationFailedException;
+import hoselabs.future_letter.global.error.ErrorResponse;
+import hoselabs.future_letter.global.error.exception.ErrorCode;
 import hoselabs.future_letter.global.security.MyUserDetails;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -47,10 +48,22 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (SignatureVerificationException sve) {
             log.error("액세스 토큰 검증 실패");
-            throw new AccessTokenVerificationFailedException();
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json;charset=UTF-8");
+
+            ErrorResponse error = ErrorResponse.of(ErrorCode.INVALID_ACCESS_TOKEN_VERIFICATION_FAILED);
+            String json = new ObjectMapper().writeValueAsString(error);
+            response.getWriter().write(json);
+            return;
         } catch (TokenExpiredException tee) {
             log.error("액세스 토큰 만료");
-            throw new AccessTokenExpiredException();
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json;charset=UTF-8");
+
+            ErrorResponse error = ErrorResponse.of(ErrorCode.ACCESS_TOKEN_EXPIRED);
+            String json = new ObjectMapper().writeValueAsString(error);
+            response.getWriter().write(json);
+            return;
         }
 
         chain.doFilter(request, response);

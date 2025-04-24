@@ -25,6 +25,7 @@ public enum ErrorCode {
     SIGNIN_PASSWORD_MISMATCH(400, "U001", "Signin Password Mismatch"),
     USER_DUPLICATION(400, "U002", "User is Duplication"),
     USER_ALREADY_EXISTS(409, "U003", "User is Already Exists"),
+    USER_NOT_OWNER(403, "U004", "User is not the owner of this resource"),
 
     // LETTER
     LETTER_NOT_ARRIVED(403, "L001", "Letter is not arrived"),

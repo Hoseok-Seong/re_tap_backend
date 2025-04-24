@@ -1,8 +1,12 @@
 package hoselabs.future_letter.global.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import hoselabs.future_letter.global.error.ErrorResponse;
+import hoselabs.future_letter.global.error.exception.ErrorCode;
 import hoselabs.future_letter.global.error.exception.jwt.AccessTokenAccessDeniedException;
 import hoselabs.future_letter.global.error.exception.jwt.AccessTokenVerificationFailedException;
 import hoselabs.future_letter.global.jwt.JwtAuthorizationFilter;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -55,12 +59,22 @@ public class SecurityConfig {
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(
                         (request, response, authException) -> {
                             log.error("액세스 토큰 검증 실패 : " + authException.getMessage());
-                            throw new AccessTokenVerificationFailedException();
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.setContentType("application/json;charset=UTF-8");
+
+                            ErrorResponse error = ErrorResponse.of(ErrorCode.INVALID_ACCESS_TOKEN_VERIFICATION_FAILED);
+                            String json = new ObjectMapper().writeValueAsString(error);
+                            response.getWriter().write(json);
                         }))
                 .exceptionHandling(exceptionHandling -> exceptionHandling.accessDeniedHandler(
                         (request, response, accessDeniedException) -> {
                             log.error("액세스 토큰 접근 실패 : " + accessDeniedException.getMessage());
-                            throw new AccessTokenAccessDeniedException();
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.setContentType("application/json;charset=UTF-8");
+
+                            ErrorResponse error = ErrorResponse.of(ErrorCode.INVALID_ACCESS_TOKEN_ACCESS_DENIED);
+                            String json = new ObjectMapper().writeValueAsString(error);
+                            response.getWriter().write(json);
                         }));
 
         return http.build();

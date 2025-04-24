@@ -77,4 +77,12 @@ public class Letter extends BaseTimeEntity {
     public void markAsRead(LocalDateTime time) {
         this.readAt = time;
     }
+
+    public void update(String title, String content, Boolean isLocked, LocalDateTime arrivalDate, LetterStatus status) {
+        this.title = title;
+        this.content = content;
+        this.isLocked = isLocked;
+        this.arrivalDate = arrivalDate;
+        this.status = status;
+    }
 }

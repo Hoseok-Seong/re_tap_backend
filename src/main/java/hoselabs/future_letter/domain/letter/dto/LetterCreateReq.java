@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor // 테스트 용도
 public class LetterCreateReq {
+    private Long letterId;
     @NotBlank(message = "제목은 필수입니다.")
     private String title;
     @NotBlank(message = "내용은 필수입니다.")
@@ -32,5 +33,15 @@ public class LetterCreateReq {
                 .arrivalDate(arrivalDate)
                 .status(status)
                 .build();
+    }
+
+    public void updateEntity(Letter letter, LetterStatus status) {
+        letter.update(
+                title,
+                content,
+                isLocked,
+                arrivalDate,
+                status
+        );
     }
 }

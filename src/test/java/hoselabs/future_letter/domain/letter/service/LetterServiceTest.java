@@ -50,7 +50,7 @@ class LetterServiceTest extends MockTest {
     @Test
     void 편지_작성_성공() {
         // given
-        LetterCreateReq req = new LetterCreateReq("제목", "내용", false, LocalDateTime.now(), true);
+        LetterCreateReq req = new LetterCreateReq(null, "제목", "내용", false, LocalDateTime.now(), true);
 
         Letter saved = Letter.builder()
                 .id(123L)
@@ -72,7 +72,7 @@ class LetterServiceTest extends MockTest {
     @Test
     void 유저정보가_없으면_예외() {
         // given
-        LetterCreateReq req = new LetterCreateReq("제목", "내용", false, LocalDateTime.now(), true);
+        LetterCreateReq req = new LetterCreateReq(null,"제목", "내용", false, LocalDateTime.now(), true);
 
         // when & then
         assertThatThrownBy(() -> letterService.createLetter(null, req))
@@ -207,6 +207,42 @@ class LetterServiceTest extends MockTest {
         // expect
         assertThatThrownBy(() -> letterService.getLetter(user.getId(), letterId))
                 .isInstanceOf(LetterNotArrivedException.class);
+    }
+
+    @Test
+    void 편지_임시저장_후_수정_성공() {
+        // given
+        Long letterId = 200L;
+        LetterCreateReq req = new LetterCreateReq(
+                letterId,
+                "수정된 제목",
+                "수정된 내용",
+                false,
+                LocalDateTime.now().plusDays(2),
+                false
+        );
+
+        Letter original = Letter.builder()
+                .id(letterId)
+                .userId(user.getId())
+                .title("원래 제목")
+                .content("원래 내용")
+                .arrivalDate(LocalDateTime.now().plusDays(1))
+                .isLocked(false)
+                .status(LetterStatus.SCHEDULED)
+                .build();
+
+        given(letterRepository.findById(letterId)).willReturn(Optional.of(original));
+
+        // when
+        LetterCreateResp result = letterService.createLetter(userDetails, req);
+
+        // then
+        assertThat(result.getLetterId()).isEqualTo(letterId);
+        assertThat(original.getTitle()).isEqualTo("수정된 제목");
+        assertThat(original.getContent()).isEqualTo("수정된 내용");
+        assertThat(original.getArrivalDate()).isEqualTo(req.getArrivalDate());
+        assertThat(original.getStatus()).isEqualTo(LetterStatus.DRAFT);
     }
 }
 
