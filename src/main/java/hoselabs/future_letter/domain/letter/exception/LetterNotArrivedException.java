@@ -4,7 +4,7 @@ import hoselabs.future_letter.global.error.exception.BusinessException;
 import hoselabs.future_letter.global.error.exception.ErrorCode;
 
 public class LetterNotArrivedException extends BusinessException {
-    public LetterNotArrivedException(String message) {
-        super(message, ErrorCode.LETTER_NOT_ARRIVED);
+    public LetterNotArrivedException()  {
+        super(ErrorCode.LETTER_NOT_ARRIVED);
     }
 }

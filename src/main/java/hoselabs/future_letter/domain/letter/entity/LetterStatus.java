@@ -8,8 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum LetterStatus {
     DRAFT("DRAFT", "임시저장"),
     SCHEDULED("SCHEDULED", "예약발송"),
-    DELIVERED("DELIVERED", "도착완료(미열람)"),
-    READ("READ", "도착완료(열람)");
+    DELIVERED("DELIVERED", "도착완료");
 
     private final String key;
     private final String name;

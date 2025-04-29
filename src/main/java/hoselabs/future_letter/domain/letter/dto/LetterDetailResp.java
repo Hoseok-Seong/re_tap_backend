@@ -1,5 +1,6 @@
 package hoselabs.future_letter.domain.letter.dto;
 
+import hoselabs.future_letter.domain.letter.entity.LetterStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,6 @@ public class LetterDetailResp {
     private Boolean isArrived;
     private Boolean isRead;
     private LocalDateTime readAt;
-    private Boolean editable;
+    private LetterStatus status;
 }
 

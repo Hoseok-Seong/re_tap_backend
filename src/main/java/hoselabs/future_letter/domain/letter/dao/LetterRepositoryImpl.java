@@ -1,5 +1,6 @@
 package hoselabs.future_letter.domain.letter.dao;
 
+import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import hoselabs.future_letter.domain.letter.entity.Letter;
 import hoselabs.future_letter.domain.letter.entity.QLetter;
@@ -22,9 +23,13 @@ public class LetterRepositoryImpl implements LetterRepositoryCustom {
                 .selectFrom(letter)
                 .where(letter.userId.eq(userId))
                 .orderBy(
-                        letter.readAt.isNull().desc(),
-                        letter.isLocked.asc(),
-                        letter.arrivalDate.desc()
+                        letter.createdAt.desc()
+//                        new CaseBuilder()
+//                                .when(letter.readAt.isNull()).then(0)
+//                                .otherwise(1)
+//                                .asc(), // 읽지 않은 편지가 위로
+//                        letter.createdAt.desc(),
+//                        letter.arrivalDate.desc()
                 )
                 .fetch();
     }

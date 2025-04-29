@@ -71,10 +71,13 @@ public class LetterService {
                 .map(letter -> new LetterListResp.LetterSummary(
                         letter.getId(),
                         letter.getTitle(),
-                        letter.getArrivalDate().toLocalDate(),
+                        letter.getContent(),
+                        letter.getArrivalDate() != null ? letter.getArrivalDate().toLocalDate() : null,
                         letter.getIsLocked(),
-                        letter.getArrivalDate().isBefore(LocalDateTime.now()), // isArrived
-                        letter.getReadAt() != null // isRead
+                        letter.getArrivalDate() != null && letter.getArrivalDate().isBefore(LocalDateTime.now()),
+                        letter.getReadAt() != null,
+                        letter.getCreatedAt().toLocalDate(),
+                        letter.getStatus()
                 ))
                 .toList();
 
@@ -86,8 +89,8 @@ public class LetterService {
         Letter letter = letterRepository.findByIdAndUserId(letterId, userId)
                 .orElseThrow(() -> new LetterNotFoundException(letterId));
 
-        if (!letter.isArrived()) {
-            throw new LetterNotArrivedException("편지가 아직 도착하지 않았습니다.");
+        if (letter.getStatus() == LetterStatus.SCHEDULED && !letter.isArrived()) {
+            throw new LetterNotArrivedException();
         }
 
         if (!letter.isRead()) {
@@ -98,12 +101,12 @@ public class LetterService {
                 letter.getId(),
                 letter.getTitle(),
                 letter.getContent(),
-                letter.getArrivalDate().toLocalDate(),
+                letter.getArrivalDate() != null ? letter.getArrivalDate().toLocalDate() : null,
                 letter.getIsLocked(),
                 letter.isArrived(),
                 letter.isRead(),
                 letter.getReadAt(),
-                letter.getStatus() == LetterStatus.DRAFT
+                letter.getStatus()
         );
     }
 
