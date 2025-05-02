@@ -19,6 +19,6 @@ public class MyPageController {
 
     @GetMapping("/my-page")
     public ResponseEntity<MyPageResp> getMyPage(@AuthenticationPrincipal final MyUserDetails userDetails) {
-        return ResponseEntity.ok().body(myPageService.getMyPage(userDetails.getUser()));
+        return ResponseEntity.ok().body(myPageService.getMyPage(userDetails.getUser().getId()));
     }
 }

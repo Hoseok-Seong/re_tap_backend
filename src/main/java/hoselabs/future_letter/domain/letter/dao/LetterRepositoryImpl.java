@@ -3,6 +3,7 @@ package hoselabs.future_letter.domain.letter.dao;
 import com.querydsl.core.types.dsl.CaseBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import hoselabs.future_letter.domain.letter.entity.Letter;
+import hoselabs.future_letter.domain.letter.entity.LetterStatus;
 import hoselabs.future_letter.domain.letter.entity.QLetter;
 import lombok.RequiredArgsConstructor;
 
@@ -42,7 +43,7 @@ public class LetterRepositoryImpl implements LetterRepositoryCustom {
                 .where(
                         letter.userId.eq(userId),
                         letter.readAt.isNull(),
-                        letter.arrivalDate.loe(LocalDateTime.now())
+                        letter.status.in(LetterStatus.DELIVERED, LetterStatus.SCHEDULED)
                 )
                 .fetchOne();
 

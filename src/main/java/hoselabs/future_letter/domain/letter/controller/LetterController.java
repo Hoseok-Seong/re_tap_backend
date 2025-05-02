@@ -2,6 +2,8 @@ package hoselabs.future_letter.domain.letter.controller;
 
 import hoselabs.future_letter.domain.letter.dto.LetterCreateReq;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateResp;
+import hoselabs.future_letter.domain.letter.dto.LetterDeleteReq;
+import hoselabs.future_letter.domain.letter.dto.LetterDeleteResp;
 import hoselabs.future_letter.domain.letter.dto.LetterDetailResp;
 import hoselabs.future_letter.domain.letter.dto.LetterListResp;
 import hoselabs.future_letter.domain.letter.service.LetterService;
@@ -37,5 +39,11 @@ public class LetterController {
     @GetMapping("/letters/{id}")
     public ResponseEntity<LetterDetailResp> getLetter(@AuthenticationPrincipal final MyUserDetails userDetails, @PathVariable final Long id) {
         return ResponseEntity.ok().body(letterService.getLetter(userDetails.getUser().getId(), id));
+    }
+
+    @PostMapping("/letters/delete")
+    public ResponseEntity<LetterDeleteResp> deleteLetters(@AuthenticationPrincipal final MyUserDetails myUserDetails,
+                                                          @RequestBody @Valid final LetterDeleteReq letterDeleteReq) {
+        return ResponseEntity.ok().body(letterService.deleteLetter(myUserDetails, letterDeleteReq));
     }
 }

@@ -35,7 +35,7 @@ public class MyPageServiceTest extends MockTest {
     @Test
     void 마이페이지_조회_성공() {
         // when
-        MyPageResp result = myPageService.getMyPage(user);
+        MyPageResp result = myPageService.getMyPage(user.getId());
 
         // then
         assertThat(result.getId()).isEqualTo(1L);

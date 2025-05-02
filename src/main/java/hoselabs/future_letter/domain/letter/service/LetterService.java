@@ -3,12 +3,15 @@ package hoselabs.future_letter.domain.letter.service;
 import hoselabs.future_letter.domain.letter.dao.LetterRepository;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateReq;
 import hoselabs.future_letter.domain.letter.dto.LetterCreateResp;
+import hoselabs.future_letter.domain.letter.dto.LetterDeleteReq;
+import hoselabs.future_letter.domain.letter.dto.LetterDeleteResp;
 import hoselabs.future_letter.domain.letter.dto.LetterDetailResp;
 import hoselabs.future_letter.domain.letter.dto.LetterListResp;
 import hoselabs.future_letter.domain.letter.entity.Letter;
 import hoselabs.future_letter.domain.letter.entity.LetterStatus;
 import hoselabs.future_letter.domain.letter.exception.LetterNotArrivedException;
 import hoselabs.future_letter.domain.letter.exception.LetterNotFoundException;
+import hoselabs.future_letter.domain.letter.exception.LetterNotOwnedException;
 import hoselabs.future_letter.domain.user.exception.UserNotOwnerException;
 import hoselabs.future_letter.global.error.exception.UserDetailsException;
 import hoselabs.future_letter.global.security.MyUserDetails;
@@ -110,4 +113,19 @@ public class LetterService {
         );
     }
 
+    @Transactional
+    public LetterDeleteResp deleteLetter(final MyUserDetails myUserDetails, final LetterDeleteReq letterDeleteReq) {
+        List<Letter> letters = letterRepository.findAllById(letterDeleteReq.getLetterIds());
+
+        boolean hasOthers = letters.stream()
+                .anyMatch(letter -> !letter.getUserId().equals(myUserDetails.getUser().getId()));
+
+        if (hasOthers) {
+            throw new LetterNotOwnedException();
+        }
+
+        letterRepository.deleteAll(letters);
+
+        return new LetterDeleteResp("편지 삭제가 완료되었습니다.");
+    }
 }

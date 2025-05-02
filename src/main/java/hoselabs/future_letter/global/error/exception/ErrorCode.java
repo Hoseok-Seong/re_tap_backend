@@ -29,6 +29,7 @@ public enum ErrorCode {
 
     // LETTER
     LETTER_NOT_ARRIVED(403, "L001", "Letter is not arrived"),
+    LETTER_NOT_OWNED(403, "L002", "Cannot delete letters you do not own"),
 
     // SECURITY
     USER_DETAILS_NULL(500, "S001", "UserDetails is Null");
