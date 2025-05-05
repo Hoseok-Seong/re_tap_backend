@@ -27,7 +27,7 @@ public class GoalRepositoryImpl implements GoalRepositoryCustom {
 //                        new CaseBuilder()
 //                                .when(goal.readAt.isNull()).then(0)
 //                                .otherwise(1)
-//                                .asc(), // 읽지 않은 편지가 위로
+//                                .asc(),
 //                        goal.createdAt.desc(),
 //                        goal.arrivalDate.desc()
                 )
@@ -50,7 +50,7 @@ public class GoalRepositoryImpl implements GoalRepositoryCustom {
     }
 
     @Override
-    public List<Goal> findRecentgoals(Long userId, int limit) {
+    public List<Goal> findRecentGoals(Long userId, int limit) {
         return queryFactory
                 .selectFrom(goal)
                 .where(goal.userId.eq(userId))
@@ -60,7 +60,7 @@ public class GoalRepositoryImpl implements GoalRepositoryCustom {
     }
 
     @Override
-    public List<Goal> findUpcominggoals(Long userId, LocalDateTime from, LocalDateTime to, int limit) {
+    public List<Goal> findUpcomingGoals(Long userId, LocalDateTime from, LocalDateTime to, int limit) {
         return queryFactory
                 .selectFrom(goal)
                 .where(

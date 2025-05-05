@@ -26,24 +26,24 @@ public class GoalController {
     private final GoalService goalService;
 
     @PostMapping("/goals")
-    public ResponseEntity<GoalCreateResp> creategoal(@AuthenticationPrincipal final MyUserDetails myUserDetails,
+    public ResponseEntity<GoalCreateResp> createGoal(@AuthenticationPrincipal final MyUserDetails myUserDetails,
                                                      @RequestBody @Valid final GoalCreateReq goalCreateReq) {
-        return ResponseEntity.ok().body(goalService.creategoal(myUserDetails, goalCreateReq));
+        return ResponseEntity.ok().body(goalService.createGoal(myUserDetails, goalCreateReq));
     }
 
     @GetMapping("/goals")
-    public ResponseEntity<GoalListResp> getgoals(@AuthenticationPrincipal final MyUserDetails userDetails) {
-        return ResponseEntity.ok().body(goalService.getgoals(userDetails.getUser().getId()));
+    public ResponseEntity<GoalListResp> getGoals(@AuthenticationPrincipal final MyUserDetails userDetails) {
+        return ResponseEntity.ok().body(goalService.getGoals(userDetails.getUser().getId()));
     }
 
     @GetMapping("/goals/{id}")
-    public ResponseEntity<GoalDetailResp> getgoal(@AuthenticationPrincipal final MyUserDetails userDetails, @PathVariable final Long id) {
-        return ResponseEntity.ok().body(goalService.getgoal(userDetails.getUser().getId(), id));
+    public ResponseEntity<GoalDetailResp> getGoal(@AuthenticationPrincipal final MyUserDetails userDetails, @PathVariable final Long id) {
+        return ResponseEntity.ok().body(goalService.getGoal(userDetails.getUser().getId(), id));
     }
 
     @PostMapping("/goals/delete")
-    public ResponseEntity<GoalDeleteResp> deletegoals(@AuthenticationPrincipal final MyUserDetails myUserDetails,
+    public ResponseEntity<GoalDeleteResp> deleteGoals(@AuthenticationPrincipal final MyUserDetails myUserDetails,
                                                       @RequestBody @Valid final GoalDeleteReq goalDeleteReq) {
-        return ResponseEntity.ok().body(goalService.deletegoals(myUserDetails, goalDeleteReq));
+        return ResponseEntity.ok().body(goalService.deleteGoals(myUserDetails, goalDeleteReq));
     }
 }

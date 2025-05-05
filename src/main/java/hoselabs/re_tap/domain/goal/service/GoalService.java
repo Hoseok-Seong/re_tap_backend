@@ -29,7 +29,7 @@ public class GoalService {
     private final GoalRepository goalRepository;
 
     @Transactional
-    public GoalCreateResp creategoal(final MyUserDetails myUserDetails, final GoalCreateReq goalCreateReq) {
+    public GoalCreateResp createGoal(final MyUserDetails myUserDetails, final GoalCreateReq goalCreateReq) {
         if (myUserDetails == null) {
             throw new UserDetailsException();
         }
@@ -51,7 +51,7 @@ public class GoalService {
             return new GoalCreateResp(goal.getId()); // 수정 후 id 반환
         }
 
-        // 새 편지 생성
+        // 새 목표 생성
         Goal saved = goalRepository.save(goalCreateReq.toEntity(userId, status));
         return new GoalCreateResp(saved.getId());
     }
@@ -67,7 +67,7 @@ public class GoalService {
     }
 
     @Transactional(readOnly = true)
-    public GoalListResp getgoals(Long userId) {
+    public GoalListResp getGoals(Long userId) {
         List<Goal> goals = goalRepository.findAllByUserIdSorted(userId);
 
         List<GoalListResp.GoalSummary> summaries = goals.stream()
@@ -88,7 +88,7 @@ public class GoalService {
     }
 
     @Transactional
-    public GoalDetailResp getgoal(Long userId, Long goalId) {
+    public GoalDetailResp getGoal(Long userId, Long goalId) {
         Goal goal = goalRepository.findByIdAndUserId(goalId, userId)
                 .orElseThrow(() -> new GoalNotFoundException(goalId));
 
@@ -114,7 +114,7 @@ public class GoalService {
     }
 
     @Transactional
-    public GoalDeleteResp deletegoals(final MyUserDetails myUserDetails, final GoalDeleteReq goalDeleteReq) {
+    public GoalDeleteResp deleteGoals(final MyUserDetails myUserDetails, final GoalDeleteReq goalDeleteReq) {
         List<Goal> goals = goalRepository.findAllById(goalDeleteReq.getGoalIds());
 
         boolean hasOthers = goals.stream()
@@ -126,6 +126,6 @@ public class GoalService {
 
         goalRepository.deleteAll(goals);
 
-        return new GoalDeleteResp("편지 삭제가 완료되었습니다.");
+        return new GoalDeleteResp("목표 삭제가 완료되었습니다.");
     }
 }

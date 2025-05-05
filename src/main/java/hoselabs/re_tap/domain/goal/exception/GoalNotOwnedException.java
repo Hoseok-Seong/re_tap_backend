@@ -5,6 +5,6 @@ import hoselabs.re_tap.global.error.exception.ErrorCode;
 
 public class GoalNotOwnedException extends BusinessException {
     public GoalNotOwnedException() {
-        super(ErrorCode.goal_NOT_OWNED);
+        super(ErrorCode.GOAL_NOT_OWNED);
     }
 }

@@ -28,8 +28,8 @@ public enum ErrorCode {
     USER_NOT_OWNER(403, "U004", "User is not the owner of this resource"),
 
     // goal
-    goal_NOT_ARRIVED(403, "G001", "goal is not arrived"),
-    goal_NOT_OWNED(403, "G002", "Cannot delete goals you do not own"),
+    GOAL_NOT_ARRIVED(403, "G001", "Goal is not arrived"),
+    GOAL_NOT_OWNED(403, "G002", "Cannot delete goals you do not own"),
 
     // SECURITY
     USER_DETAILS_NULL(500, "S001", "UserDetails is Null");

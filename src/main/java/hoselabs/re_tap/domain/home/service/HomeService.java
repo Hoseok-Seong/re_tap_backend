@@ -27,7 +27,7 @@ public class HomeService {
         HomeResp.Quote todayQuote = quoteProvider.getQuoteByDayOfYear(LocalDate.now().getDayOfYear());
 
         // 3. 최근 작성한 목표 3건
-        List<HomeResp.RecentGoal> recentGoals = goalRepository.findRecentgoals(userId, 3).stream()
+        List<HomeResp.RecentGoal> recentGoals = goalRepository.findRecentGoals(userId, 3).stream()
                 .map(goal -> new HomeResp.RecentGoal(
                         goal.getTitle(),
                         goal.getCreatedAt().toLocalDate()
@@ -37,7 +37,7 @@ public class HomeService {
         // 4. 도착 예정 목표 3건 (한달 이내)
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime oneMonthLater = now.plusMonths(1);
-        List<HomeResp.UpcomingGoal> upcomingGoals = goalRepository.findUpcominggoals(userId, now, oneMonthLater, 3).stream()
+        List<HomeResp.UpcomingGoal> upcomingGoals = goalRepository.findUpcomingGoals(userId, now, oneMonthLater, 3).stream()
                 .map(goal -> new HomeResp.UpcomingGoal(
                         goal.getTitle(),
                         goal.getArrivalDate().toLocalDate()

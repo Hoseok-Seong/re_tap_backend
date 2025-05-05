@@ -5,6 +5,6 @@ import hoselabs.re_tap.global.error.exception.ErrorCode;
 
 public class GoalNotArrivedException extends BusinessException {
     public GoalNotArrivedException()  {
-        super(ErrorCode.goal_NOT_ARRIVED);
+        super(ErrorCode.GOAL_NOT_ARRIVED);
     }
 }

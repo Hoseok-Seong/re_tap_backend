@@ -67,9 +67,9 @@ public class HomeServiceTest extends MockTest {
                 .build();
         ReflectionTestUtils.setField(goal2, "createdAt", LocalDateTime.of(2024, 4, 30, 10, 0));
 
-        List<Goal> recentgoals = List.of(goal1, goal2);
+        List<Goal> recentGoals = List.of(goal1, goal2);
 
-        List<Goal> upcominggoals = List.of(
+        List<Goal> upcomingGoals = List.of(
                 Goal.builder()
                         .title("다가올 목표")
                         .arrivalDate(LocalDateTime.of(2024, 5, 25, 0, 0))
@@ -78,8 +78,8 @@ public class HomeServiceTest extends MockTest {
 
         given(goalRepository.countUnreadAndArrived(user.getId())).willReturn(unreadCount);
         given(quoteProvider.getQuoteByDayOfYear(anyInt())).willReturn(quote);
-        given(goalRepository.findRecentgoals(user.getId(), 3)).willReturn(recentgoals);
-        given(goalRepository.findUpcominggoals(eq(user.getId()), any(), any(), eq(3))).willReturn(upcominggoals);
+        given(goalRepository.findRecentGoals(user.getId(), 3)).willReturn(recentGoals);
+        given(goalRepository.findUpcomingGoals(eq(user.getId()), any(), any(), eq(3))).willReturn(upcomingGoals);
 
         // when
         HomeResp result = homeService.getHome(user.getId());

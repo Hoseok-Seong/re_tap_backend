@@ -64,7 +64,7 @@ public class GoalServiceTest extends MockTest {
         given(goalRepository.save(any())).willReturn(saved);
 
         // when
-        GoalCreateResp result = goalService.creategoal(userDetails, req);
+        GoalCreateResp result = goalService.createGoal(userDetails, req);
 
         // then
         assertThat(result.getGoalId()).isEqualTo(123L);
@@ -76,7 +76,7 @@ public class GoalServiceTest extends MockTest {
         GoalCreateReq req = new GoalCreateReq(null,"제목", "내용", false, LocalDateTime.now(), true);
 
         // when & then
-        assertThatThrownBy(() -> goalService.creategoal(null, req))
+        assertThatThrownBy(() -> goalService.createGoal(null, req))
                 .isInstanceOf(UserDetailsException.class);
     }
 
@@ -107,7 +107,7 @@ public class GoalServiceTest extends MockTest {
         given(goalRepository.findAllByUserIdSorted(user.getId())).willReturn(goals);
 
         // when
-        GoalListResp result = goalService.getgoals(user.getId());
+        GoalListResp result = goalService.getGoals(user.getId());
 
         // then
         assertThat(result).isNotNull();
@@ -138,7 +138,7 @@ public class GoalServiceTest extends MockTest {
                 .willReturn(Optional.of(goal));
 
         // when
-        GoalDetailResp result = goalService.getgoal(user.getId(), goalId);
+        GoalDetailResp result = goalService.getGoal(user.getId(), goalId);
 
         // then
         assertThat(result).isNotNull();
@@ -169,7 +169,7 @@ public class GoalServiceTest extends MockTest {
                 .willReturn(Optional.of(goal));
 
         // when
-        GoalDetailResp result = goalService.getgoal(user.getId(), goalId);
+        GoalDetailResp result = goalService.getGoal(user.getId(), goalId);
 
         // then
         assertThat(result.getIsRead()).isTrue();
@@ -184,7 +184,7 @@ public class GoalServiceTest extends MockTest {
                 .willReturn(Optional.empty());
 
         // expect
-        assertThatThrownBy(() -> goalService.getgoal(user.getId(), goalId))
+        assertThatThrownBy(() -> goalService.getGoal(user.getId(), goalId))
                 .isInstanceOf(GoalNotFoundException.class);
     }
 
@@ -206,7 +206,7 @@ public class GoalServiceTest extends MockTest {
                 .willReturn(Optional.of(goal));
 
         // expect
-        assertThatThrownBy(() -> goalService.getgoal(user.getId(), goalId))
+        assertThatThrownBy(() -> goalService.getGoal(user.getId(), goalId))
                 .isInstanceOf(GoalNotArrivedException.class);
     }
 
@@ -236,7 +236,7 @@ public class GoalServiceTest extends MockTest {
         given(goalRepository.findById(goalId)).willReturn(Optional.of(original));
 
         // when
-        GoalCreateResp result = goalService.creategoal(userDetails, req);
+        GoalCreateResp result = goalService.createGoal(userDetails, req);
 
         // then
         assertThat(result.getGoalId()).isEqualTo(goalId);
