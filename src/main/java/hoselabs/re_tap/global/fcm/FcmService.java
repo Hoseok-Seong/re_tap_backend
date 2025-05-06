@@ -18,6 +18,6 @@ public class FcmService {
                 .build();
 
         String response = FirebaseMessaging.getInstance().send(message);
-        System.out.println("✅ 푸시 알림 전송 완료: " + response);
+        System.out.println("푸시 알림 전송 완료: " + response);
     }
 }
