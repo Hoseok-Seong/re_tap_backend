@@ -43,6 +43,9 @@ public class User extends BaseTimeEntity {
     @Column(name = "is_blocked", nullable = false)
     private Boolean isBlocked;
 
+    @Column(name = "fcm_token")
+    private String fcmToken;
+
     @Builder
     public User(Long id, String username, String provider, String profileImageUrl) {
         this.id = id;
@@ -59,5 +62,8 @@ public class User extends BaseTimeEntity {
 
     public void updateNickname(String newNickname) {
         this.nickname = newNickname;
+    }
+    public void updateFcmToken(String fcmToken) {
+        this.fcmToken = fcmToken;
     }
 }

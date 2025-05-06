@@ -1,5 +1,7 @@
 package hoselabs.re_tap.domain.user.controller;
 
+import hoselabs.re_tap.domain.user.dto.FcmTokenReq;
+import hoselabs.re_tap.domain.user.dto.FcmTokenResp;
 import hoselabs.re_tap.domain.user.dto.UpdateProfileReq;
 import hoselabs.re_tap.domain.user.dto.UpdateProfileResp;
 import hoselabs.re_tap.domain.user.dto.WithdrawResp;
@@ -34,5 +36,14 @@ public class UserController {
     public ResponseEntity<WithdrawResp> withdraw(@AuthenticationPrincipal final MyUserDetails userDetails) {
         userService.withdraw(userDetails.getUser().getId());
         return ResponseEntity.ok(new WithdrawResp("회원 탈퇴가 완료되었습니다."));
+    }
+
+    @PostMapping("/user/fcm-token")
+    public ResponseEntity<FcmTokenResp> updateFcmToken(
+            @AuthenticationPrincipal final MyUserDetails userDetails,
+            @RequestBody @Valid final FcmTokenReq req
+    ) {
+        FcmTokenResp resp = userService.updateFcmToken(userDetails.getUser().getId(), req);
+        return ResponseEntity.ok(resp);
     }
 }

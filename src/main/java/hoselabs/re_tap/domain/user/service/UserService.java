@@ -3,6 +3,8 @@ package hoselabs.re_tap.domain.user.service;
 import hoselabs.re_tap.domain.auth.dao.RefreshTokenRepository;
 import hoselabs.re_tap.domain.goal.dao.GoalRepository;
 import hoselabs.re_tap.domain.user.dao.UserRepository;
+import hoselabs.re_tap.domain.user.dto.FcmTokenReq;
+import hoselabs.re_tap.domain.user.dto.FcmTokenResp;
 import hoselabs.re_tap.domain.user.dto.UpdateProfileReq;
 import hoselabs.re_tap.domain.user.dto.UpdateProfileResp;
 import hoselabs.re_tap.domain.user.entity.User;
@@ -41,5 +43,15 @@ public class UserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
         userRepository.delete(user);
+    }
+
+    @Transactional
+    public FcmTokenResp updateFcmToken(Long userId, FcmTokenReq req) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+
+        user.updateFcmToken(req.getFcmToken());
+
+        return new FcmTokenResp(user.getId());
     }
 }

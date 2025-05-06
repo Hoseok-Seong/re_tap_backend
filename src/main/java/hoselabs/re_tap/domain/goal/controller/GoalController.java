@@ -5,6 +5,8 @@ import hoselabs.re_tap.domain.goal.dto.GoalCreateResp;
 import hoselabs.re_tap.domain.goal.dto.GoalDeleteReq;
 import hoselabs.re_tap.domain.goal.dto.GoalDeleteResp;
 import hoselabs.re_tap.domain.goal.dto.GoalDetailResp;
+import hoselabs.re_tap.domain.goal.dto.GoalFeedbackReq;
+import hoselabs.re_tap.domain.goal.dto.GoalFeedbackResp;
 import hoselabs.re_tap.domain.goal.dto.GoalListResp;
 import hoselabs.re_tap.domain.goal.service.GoalService;
 import hoselabs.re_tap.global.security.MyUserDetails;
@@ -45,5 +47,11 @@ public class GoalController {
     public ResponseEntity<GoalDeleteResp> deleteGoals(@AuthenticationPrincipal final MyUserDetails myUserDetails,
                                                       @RequestBody @Valid final GoalDeleteReq goalDeleteReq) {
         return ResponseEntity.ok().body(goalService.deleteGoals(myUserDetails, goalDeleteReq));
+    }
+
+    @PostMapping("/goals/feedback")
+    public ResponseEntity<GoalFeedbackResp> feedbackGoal(@AuthenticationPrincipal final MyUserDetails myUserDetails,
+                                                         @RequestBody @Valid final GoalFeedbackReq goalFeedbackReq) {
+        return ResponseEntity.ok().body(goalService.feedbackGoal(myUserDetails, goalFeedbackReq));
     }
 }

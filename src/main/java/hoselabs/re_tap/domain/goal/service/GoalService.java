@@ -6,6 +6,8 @@ import hoselabs.re_tap.domain.goal.dto.GoalCreateResp;
 import hoselabs.re_tap.domain.goal.dto.GoalDeleteReq;
 import hoselabs.re_tap.domain.goal.dto.GoalDeleteResp;
 import hoselabs.re_tap.domain.goal.dto.GoalDetailResp;
+import hoselabs.re_tap.domain.goal.dto.GoalFeedbackReq;
+import hoselabs.re_tap.domain.goal.dto.GoalFeedbackResp;
 import hoselabs.re_tap.domain.goal.dto.GoalListResp;
 import hoselabs.re_tap.domain.goal.entity.Goal;
 import hoselabs.re_tap.domain.goal.entity.GoalStatus;
@@ -127,5 +129,22 @@ public class GoalService {
         goalRepository.deleteAll(goals);
 
         return new GoalDeleteResp("목표 삭제가 완료되었습니다.");
+    }
+
+    @Transactional
+    public GoalFeedbackResp feedbackGoal(final MyUserDetails myUserDetails, final GoalFeedbackReq goalFeedbackReq) {
+        if (myUserDetails == null) {
+            throw new UserDetailsException();
+        }
+
+        Long userId = myUserDetails.getUser().getId();
+        Long goalId = goalFeedbackReq.getGoalId();
+
+        Goal goal = goalRepository.findByIdAndUserId(goalId, userId)
+                .orElseThrow(() -> new GoalNotFoundException(goalId));
+
+        goal.feedbackGoal(goalFeedbackReq.getScore(), goalFeedbackReq.getFeedback());
+
+        return new GoalFeedbackResp(goal);
     }
 }

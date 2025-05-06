@@ -46,6 +46,12 @@ public class Goal extends BaseTimeEntity {
     @Column(name = "status")
     private GoalStatus status;
 
+    @Column(name = "score")
+    private Integer score;
+
+    @Column(name = "feedback")
+    private String feedback;
+
     @Column(name = "read_at")
     private LocalDateTime readAt;
 
@@ -83,5 +89,10 @@ public class Goal extends BaseTimeEntity {
         this.isLocked = isLocked;
         this.arrivalDate = arrivalDate;
         this.status = status;
+    }
+
+    public void feedbackGoal(Integer score, String feedback) {
+        this.score = score;
+        this.feedback = feedback;
     }
 }
