@@ -18,6 +18,7 @@ public class GoalScheduler {
     private final UserRepository userRepository;
 
     @Scheduled(cron = "0 0 9 * * ?")
+    //@Scheduled(cron = "0 * * * * ?")
     public void notifyUsersOfArrivedGoals() {
         List<UserArrivingGoal> users = userRepository.findAllWithArrivingGoalsToday();
 

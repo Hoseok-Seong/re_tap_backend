@@ -36,7 +36,7 @@ public class GoalService {
             throw new UserDetailsException();
         }
 
-        GoalStatus status = determineStatus(goalCreateReq.getIsSend(), goalCreateReq.getIsLocked());
+        GoalStatus status = determineStatus(goalCreateReq.getIsSend(), goalCreateReq.getArrivalDate());
 
         Long userId = myUserDetails.getUser().getId();
 
@@ -58,11 +58,11 @@ public class GoalService {
         return new GoalCreateResp(saved.getId());
     }
 
-    private GoalStatus determineStatus(Boolean isSend, Boolean isLocked) {
+    private GoalStatus determineStatus(Boolean isSend, LocalDateTime arrivalDate) {
         if (!isSend) {
             return GoalStatus.DRAFT;
         }
-        if (Boolean.TRUE.equals(isLocked)) {
+        if (arrivalDate != null) {
             return GoalStatus.SCHEDULED;
         }
         return GoalStatus.DELIVERED;
@@ -94,7 +94,7 @@ public class GoalService {
         Goal goal = goalRepository.findByIdAndUserId(goalId, userId)
                 .orElseThrow(() -> new GoalNotFoundException(goalId));
 
-        if (goal.getStatus() == GoalStatus.SCHEDULED && !goal.isArrived()) {
+        if (goal.getStatus() == GoalStatus.SCHEDULED && !goal.isArrived() && goal.getIsLocked()) {
             throw new GoalNotArrivedException();
         }
 
