@@ -21,4 +21,6 @@ public class GoalDetailResp {
     private Boolean isRead;
     private LocalDateTime readAt;
     private GoalStatus status;
+    private Integer score;
+    private String feedback;
 }

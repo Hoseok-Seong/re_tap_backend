@@ -111,7 +111,9 @@ public class GoalService {
                 goal.isArrived(),
                 goal.isRead(),
                 goal.getReadAt(),
-                goal.getStatus()
+                goal.getStatus(),
+                goal.getScore(),
+                goal.getFeedback()
         );
     }
 
