@@ -11,4 +11,5 @@ public class UserArrivingGoal {
     private Long userId;
     private String fcmToken;
     private Long count;
+    private String nickname;
 }

@@ -25,6 +25,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                         UserArrivingGoal.class,
                         user.id,
                         user.fcmToken,
+                        user.nickname,
                         goal.id.count()
                 ))
                 .from(user, goal)

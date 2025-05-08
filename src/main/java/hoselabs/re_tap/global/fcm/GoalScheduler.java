@@ -26,7 +26,7 @@ public class GoalScheduler {
             try {
                 fcmService.sendMessage(
                         user.getFcmToken(),
-                        "🎯 오늘 도착한 목표!",
+                        "🎯 " + user.getNickname() + "님, 오늘 도착한 목표!",
                         "오늘 도착한 목표가 " + user.getCount() + "개 있어요."
                 );
             } catch (Exception e) {

@@ -8,6 +8,7 @@ import hoselabs.re_tap.domain.user.dto.FcmTokenResp;
 import hoselabs.re_tap.domain.user.dto.UpdateProfileReq;
 import hoselabs.re_tap.domain.user.dto.UpdateProfileResp;
 import hoselabs.re_tap.domain.user.entity.User;
+import hoselabs.re_tap.domain.user.exception.UserNicknameDuplicateException;
 import hoselabs.re_tap.domain.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,13 @@ public class UserService {
 
     @Transactional
     public UpdateProfileResp updateProfile(Long userId, UpdateProfileReq req) {
+        String nickname = req.getNickname();
+
+        // 닉네임 중복 확인
+        if (userRepository.existsByNickname(nickname)) {
+            throw new UserNicknameDuplicateException();
+        }
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
 

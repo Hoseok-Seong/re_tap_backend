@@ -26,6 +26,7 @@ public enum ErrorCode {
     USER_DUPLICATION(400, "U002", "User is Duplication"),
     USER_ALREADY_EXISTS(409, "U003", "User is Already Exists"),
     USER_NOT_OWNER(403, "U004", "User is not the owner of this resource"),
+    USER_NICKNAME_DUPLICATE(409, "U005", "User Nickname is Duplicated"),
 
     // goal
     GOAL_NOT_ARRIVED(403, "G001", "Goal is not arrived"),

@@ -33,7 +33,7 @@ public class User extends BaseTimeEntity {
     @Column(name = "profile_image_url", nullable = false)
     private String profileImageUrl;
 
-    @Column(name = "nickname")
+    @Column(name = "nickname", unique = true)
     private String nickname;
 
     @Enumerated(EnumType.STRING)
