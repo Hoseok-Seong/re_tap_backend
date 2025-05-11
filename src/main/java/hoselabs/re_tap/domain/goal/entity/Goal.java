@@ -95,4 +95,8 @@ public class Goal extends BaseTimeEntity {
         this.score = score;
         this.feedback = feedback;
     }
+
+    public void initReadAt() {
+        this.readAt = null;
+    }
 }

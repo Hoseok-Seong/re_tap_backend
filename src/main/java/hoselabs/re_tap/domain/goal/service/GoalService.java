@@ -50,6 +50,11 @@ public class GoalService {
             }
 
             goalCreateReq.updateEntity(goal, status);
+
+            if (status == GoalStatus.DRAFT) {
+                goal.initReadAt();
+            }
+
             return new GoalCreateResp(goal.getId()); // 수정 후 id 반환
         }
 
@@ -98,7 +103,7 @@ public class GoalService {
             throw new GoalNotArrivedException();
         }
 
-        if (!goal.isRead()) {
+        if (goal.getStatus() != GoalStatus.DRAFT && !goal.isRead()) {
             goal.markAsRead();
         }
 
