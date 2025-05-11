@@ -51,9 +51,7 @@ public class GoalService {
 
             goalCreateReq.updateEntity(goal, status);
 
-            if (status == GoalStatus.DRAFT) {
-                goal.initReadAt();
-            }
+            goal.initReadAt();
 
             return new GoalCreateResp(goal.getId()); // 수정 후 id 반환
         }
@@ -87,7 +85,8 @@ public class GoalService {
                         goal.getArrivalDate() != null && goal.getArrivalDate().isBefore(LocalDateTime.now()),
                         goal.getReadAt() != null,
                         goal.getCreatedAt().toLocalDate(),
-                        goal.getStatus()
+                        goal.getStatus(),
+                        goal.getScore()
                 ))
                 .toList();
 

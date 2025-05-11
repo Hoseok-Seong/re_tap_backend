@@ -24,12 +24,6 @@ public class GoalRepositoryImpl implements GoalRepositoryCustom {
                 .where(goal.userId.eq(userId))
                 .orderBy(
                         goal.createdAt.desc()
-//                        new CaseBuilder()
-//                                .when(goal.readAt.isNull()).then(0)
-//                                .otherwise(1)
-//                                .asc(),
-//                        goal.createdAt.desc(),
-//                        goal.arrivalDate.desc()
                 )
                 .fetch();
     }
@@ -42,9 +36,16 @@ public class GoalRepositoryImpl implements GoalRepositoryCustom {
                 .where(
                         goal.userId.eq(userId),
                         goal.readAt.isNull(),
-                        goal.status.in(GoalStatus.DELIVERED, GoalStatus.SCHEDULED)
+                        (
+                                goal.status.eq(GoalStatus.DELIVERED)
+                                        .and(goal.arrivalDate.isNull())
+                        ).or(
+                                goal.status.eq(GoalStatus.SCHEDULED)
+                                        .and(goal.isLocked.eq(false))
+                        )
                 )
                 .fetchOne();
+
 
         return Objects.requireNonNullElse(count, 0L).intValue();
     }

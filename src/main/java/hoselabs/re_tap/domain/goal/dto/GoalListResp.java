@@ -27,5 +27,6 @@ public class GoalListResp {
         private Boolean isRead;
         private LocalDate createdDate;
         private GoalStatus status;
+        private Integer score;
     }
 }
