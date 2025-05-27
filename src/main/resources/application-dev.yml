@@ -37,3 +37,7 @@ spring:
   web:
     resources:
       static-locations: file:src/main/resources/static/uploads/
+  cloud:
+    aws:
+      region:
+        static: ap-northeast-2
