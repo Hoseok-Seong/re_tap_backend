@@ -1,6 +1,14 @@
 
 # 🧠 Re_Tap Backend
 
+> 📌 [English](#english) | 🇰🇷 [한국어](#korean)
+
+---
+
+# English
+
+## 🧠 Re_Tap Backend
+
 A secure and scalable backend for Re_Tap — a goal-based routine tracking app designed to help users build habits and stay motivated.  
 This backend handles OAuth login, push notifications, and zero-downtime deployment, enabling a smooth and reliable experience.
 
@@ -38,22 +46,9 @@ The backend supports user authentication, notification delivery, and automation 
 
 ---
 
-## 🚀 Getting Started
+# Korean
 
-```bash
-# Clone the project
-git clone https://github.com/your-id/re_tap_backend.git
-
-# Build
-./gradlew build
-
-# Run with Docker Compose
-docker-compose up -d
-```
-
----
-
-# 🧠 Re_Tap 백엔드
+## 🧠 Re_Tap 백엔드
 
 사용자의 목표 설정과 루틴 실행을 돕는 앱 Re_Tap의 백엔드 시스템입니다.  
 OAuth 로그인, 푸시 알림, 무중단 배포까지 고려하여 **안정성과 실용성을 모두 갖춘 인프라**를 구성했습니다.
@@ -88,18 +83,3 @@ Re_Tap은 사용자가 개인 목표를 생성하고, 루틴을 잠금 설정하
 - **Firebase Admin SDK**
 - **GitHub Actions**, **Docker**, **Nginx**
 - **JUnit5**, **Mockito**
-
----
-
-## 🚀 시작 방법
-
-```bash
-# 프로젝트 클론
-git clone https://github.com/your-id/re_tap_backend.git
-
-# 빌드
-./gradlew build
-
-# 도커로 실행
-docker-compose up -d
-```
