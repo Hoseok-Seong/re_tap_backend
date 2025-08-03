@@ -1,3 +1,9 @@
+## Google Play
+
+https://play.google.com/store/apps/details?id=kr.co.hoselabs.re_tap
+
+---
+
 ## 🧠 Re_Tap 백엔드
 
 ReTap은 반복적인 목표 실천을 돕기 위한 **루틴 기반 자기 관리 앱**입니다.  
